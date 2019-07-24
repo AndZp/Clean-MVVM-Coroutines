@@ -1,6 +1,6 @@
 package io.mateam.playground2.data.dataSource.remote
 
-import io.mateam.playground2.data.core.entity.Result
+import io.mateam.playground2.domain.entity.Result
 import io.mateam.playground2.data.dataSource.remote.api.TmdbApi
 import io.mateam.playground2.data.dataSource.remote.entity.TmdbMovieResponse
 import io.mateam.playground2.data.dataSource.remote.mapper.RemoteMoviesMapper

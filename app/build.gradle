@@ -3,41 +3,87 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
     defaultConfig {
         applicationId "io.mateam.playground"
-        minSdkVersion 22
-        targetSdkVersion 29
-        versionCode version_code
-        versionName version_name
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    // kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.0.2'
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
 
-    // coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
-
-    // koin
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    testImplementation "org.koin:koin-test:$koin_version"
+    implementation project(path: ':data')
     implementation project(path: ':domain')
+    implementation project(path: ':presentation')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation appDependencies.appCompat
+
+    // Kotlin
+    implementation appDependencies.kotlin
+
+    // Coroutines
+    implementation appDependencies.coroutines
+
+    // Moshi
+    implementation appDependencies.moshi
+
+    // Retrofit2
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitMoshiConverter
+
+    // Okhttp3
+    implementation appDependencies.okhttp
+    implementation appDependencies.okhttpLogging
+
+    // Timber log
+    implementation appDependencies.timber
+
+    //di
+    implementation appDependencies.koin
+    implementation appDependencies.koinScope
+    implementation appDependencies.koinViewModel
+
+    // android architecture component
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleCommon
+
+    // test
+    testImplementation appTestDependencies.junit
+    testImplementation appTestDependencies.koinTest
+    androidTestImplementation appTestDependencies.testRunner
+    androidTestImplementation appTestDependencies.testRules
+    androidTestImplementation appTestDependencies.espressoCore
+    androidTestImplementation appTestDependencies.espressoContrib
+    implementation appTestDependencies.espressoIdlingResource
+    androidTestImplementation appTestDependencies.supportAnnotations
+
+
 }

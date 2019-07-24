@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    implementation project(path: ':domain')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // android support libs
+    implementation presentationDependencies.appCompat
+
+    //di
+    implementation presentationDependencies.koin
+    implementation presentationDependencies.koinScope
+    implementation presentationDependencies.koinViewModel
+
+    // android architecture component
+    implementation presentationDependencies.lifecycleExtensions
+    implementation presentationDependencies.lifecycleCommon
+
+    // test
+    testImplementation presentationTestDependencies.junit
+    testImplementation presentationTestDependencies.koinTest
+    androidTestImplementation presentationTestDependencies.testRunner
+    androidTestImplementation presentationTestDependencies.testRules
+    androidTestImplementation presentationTestDependencies.espressoCore
+    androidTestImplementation presentationTestDependencies.espressoContrib
+    implementation presentationTestDependencies.espressoIdlingResource
+    androidTestImplementation presentationTestDependencies.supportAnnotations
+
+}

@@ -4,18 +4,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
 
     defaultConfig {
-        minSdkVersion 22
-        targetSdkVersion 29
-        versionCode version_code
-        versionName version_name
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
     }
 
     buildTypes {
@@ -23,6 +21,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 
     buildTypes.each {
@@ -34,43 +37,50 @@ android {
         it.resValue 'string', "api_key", tmdbApiKey
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.21.0'
-
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    // Kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.0.2'
-
-    // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation project(path: ':domain')
 
-    // Koin DI
-    implementation "org.koin:koin-android:$koin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation dataDependencies.appCompat
+
+    // Kotlin
+    implementation dataDependencies.kotlin
+
+    // Coroutines
+    implementation dataDependencies.coroutines
 
     // Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation dataDependencies.moshi
+    kapt dataDependencies.moshiCodegen
 
     // Retrofit2
-    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitMoshiConverter
 
     // Okhttp3
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation dataDependencies.okhttp
+    implementation dataDependencies.okhttpLogging
+
 
     // Timber log
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation dataDependencies.timber
+
+
+    // test
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.mockito
+    androidTestImplementation dataTestDependencies.testRunner
+
 }

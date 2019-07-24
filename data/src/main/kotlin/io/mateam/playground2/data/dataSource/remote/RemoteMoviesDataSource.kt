@@ -10,7 +10,7 @@ import retrofit2.Response
 import java.io.IOException
 
 interface RemoteMoviesDataSource {
-    suspend fun fetchPopular(): Result<PopularMovies>
+    suspend fun fetchPopular(page: Int): Result<PopularMovies>
 }
 
 class TmdbMoviesApiDataSource(
@@ -18,7 +18,7 @@ class TmdbMoviesApiDataSource(
     private val mapper: RemoteMoviesMapper
 ) : RemoteMoviesDataSource {
 
-    override suspend fun fetchPopular(): Result<PopularMovies> {
+    override suspend fun fetchPopular(page: Int): Result<PopularMovies> {
         return try {
             val response: Response<TmdbMovieResponse> = api.getPopularMovie()
             val tmdbMovieResponse = response.body()

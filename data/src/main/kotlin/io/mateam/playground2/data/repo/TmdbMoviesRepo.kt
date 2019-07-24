@@ -12,13 +12,13 @@ class TmdbMoviesRepo(
     private val cache: CacheDataSource
 ) : MoviesRepo {
 
-    override suspend fun getPopularMovies(): Result<PopularMovies> {
-        val cachedMovies = cache.getPopularMovies()
+    override suspend fun getPopularMovies(page:Int): Result<PopularMovies> {
+        val cachedMovies = cache.getPopularMovies(page)
         return if (cachedMovies !=null) {
             logDebug("getPopularMovies: return cache")
             Result.Success(cachedMovies)
         } else {
-           val  result = remote.fetchPopular()
+           val  result = remote.fetchPopular(page)
             if (result is Result.Success){
                 cache.cachePopularMovies(result.data)
             }

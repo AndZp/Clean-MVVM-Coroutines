@@ -50,6 +50,9 @@ dependencies {
     implementation presentationDependencies.lifecycleExtensions
     implementation presentationDependencies.lifecycleCommon
 
+    // Timber log
+    implementation dataDependencies.timber
+
     // test
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.koinTest

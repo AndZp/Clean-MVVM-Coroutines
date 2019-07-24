@@ -50,7 +50,6 @@ dependencies {
     // Timber log
     implementation domainDependencies.timber
 
-
     // test
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.mockito

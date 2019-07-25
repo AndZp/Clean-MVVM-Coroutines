@@ -1,9 +1,9 @@
 package io.mateam.playground.presentation.popular.viewModel
 
 import io.mateam.playground2.domain.entity.PopularMovies
-import io.mateam.playground2.domain.useCase.GetNextPopularMoviesPage
+import io.mateam.playground2.domain.useCase.GetPopularMoviesPage
 
-class PopularMoviesViewModel(private val getNextPopularMoviesPage: GetNextPopularMoviesPage) {
+class PopularMoviesViewModel(private val getPopularMoviesPage: GetPopularMoviesPage) {
 
 }
 

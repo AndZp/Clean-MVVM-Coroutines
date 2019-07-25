@@ -35,7 +35,7 @@ class GetPopularMoviesPage(private val repo: MoviesRepo) : BaseUseCase<PopularMo
     }
 
     private fun checkIsEndWasReached(popularMovies: PopularMovies) {
-        isEndReached = popularMovies.page <= popularMovies.totalPages
+        isEndReached = popularMovies.page >= popularMovies.totalPages
         logDebug("checkIsEndWasReached: isEndReached [$isEndReached]. Last loaded page [${popularMovies.page}, total pages [${popularMovies.totalPages}]]")
     }
 

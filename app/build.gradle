@@ -28,6 +28,7 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'

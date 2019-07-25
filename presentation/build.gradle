@@ -48,7 +48,7 @@ dependencies {
 
     // android architecture component
     implementation presentationDependencies.lifecycleExtensions
-    implementation presentationDependencies.lifecycleCommon
+    implementation presentationDependencies.lifecycleViewMovel
 
     // Timber log
     implementation dataDependencies.timber

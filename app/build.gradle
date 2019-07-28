@@ -46,6 +46,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation appDependencies.appCompat
+    implementation appDependencies.constraintLayout
 
     // Kotlin
     implementation appDependencies.kotlin
@@ -71,6 +72,10 @@ dependencies {
     implementation appDependencies.koin
     implementation appDependencies.koinScope
     implementation appDependencies.koinViewModel
+
+    //
+    implementation appDependencies.stetho
+    implementation appDependencies.stethoOkHttp
 
     // android architecture component
     implementation appDependencies.lifecycleExtensions

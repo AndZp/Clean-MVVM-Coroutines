@@ -8,15 +8,16 @@ class RemoteMoviesMapper {
     fun map(response: TmdbMovieResponse): PopularMovies {
         return PopularMovies(
             page = response.page,
-            totalMovies = response.totalMovies,
-            totalPages = response.totalPages,
-            movies = response.movies.map { tmdbMovie ->
+            totalMovies = response.total_results,
+            totalPages = response.total_pages,
+            movies = response.results.map { tmdbMovie ->
                 Movie(
                     id = tmdbMovie.id,
                     title = tmdbMovie.title,
-                    voteAverage = tmdbMovie.voteAverage,
+                    voteAverage = tmdbMovie.vote_average,
                     overview = tmdbMovie.overview,
-                    adult = tmdbMovie.adult
+                    adult = tmdbMovie.adult,
+                    posterPath = tmdbMovie.poster_path
                 )
             }
         )

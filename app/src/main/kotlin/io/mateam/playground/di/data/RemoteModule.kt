@@ -1,7 +1,7 @@
 @file:Suppress("RemoveExplicitTypeArguments")
+package io.mateam.playground.di.data
 
-package io.mateam.playground2.data.dataSource.remote.di
-
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import io.mateam.playground2.data.BuildConfig
 import io.mateam.playground2.data.dataSource.remote.RemoteMoviesDataSource
 import io.mateam.playground2.data.dataSource.remote.TmdbMoviesApiDataSource
@@ -18,6 +18,7 @@ val remoteDataSourceModule = module {
 
     factory<OkHttpClient> {
         OkHttpClient().newBuilder()
+            .addNetworkInterceptor(StethoInterceptor())
             .addInterceptor(get<TmdbAuthInterceptor>())
             .build()
     }

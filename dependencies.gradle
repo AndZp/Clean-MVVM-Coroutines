@@ -32,6 +32,8 @@ ext {
     mockitoKotlinVersion = '2.0.0-RC1'
     mockitoCoreVersion = '2.21.0'
 
+    stethoVersion = '1.5.1'
+
     // App
     appDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -39,6 +41,7 @@ ext {
             material              : "com.google.android.material:material:$supportVersion",
             recyclerview          : "androidx.recyclerview:recyclerview:$supportVersion",
             cardview              : "androidx.cardview:cardview:$supportVersion",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             timber                : "com.jakewharton.timber:timber:$timberVersion",
             coroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion",
             koin                  : "org.koin:koin-android:$koinVersion",
@@ -55,6 +58,8 @@ ext {
             moshiCodegen          : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
             lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             lifecycleCommon       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
+            stetho                : "com.facebook.stetho:stetho:$stethoVersion",
+            stethoOkHttp          : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
     ]
     appTestDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -117,6 +122,7 @@ ext {
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             appCompat             : "androidx.appcompat:appcompat:$supportVersion",
             material              : "com.google.android.material:material:$supportVersion",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             recyclerview          : "androidx.recyclerview:recyclerview:$supportVersion",
             cardview              : "androidx.cardview:cardview:$supportVersion",
             timber                : "com.jakewharton.timber:timber:$timberVersion",

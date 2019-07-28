@@ -20,14 +20,13 @@ class TmdbMoviesApiDataSource(
 
     override suspend fun fetchPopular(page: Int): Result<PopularMovies> {
         return try {
-            val response: Response<TmdbMovieResponse> = api.getPopularMovie()
+            val response: Response<TmdbMovieResponse> = api.getPopularMovie(page)
             val tmdbMovieResponse = response.body()
             if (response.isSuccessful && tmdbMovieResponse != null) {
-                val tmdbMovies = tmdbMovieResponse.results
-                val popularMovies = mapper.map(tmdbMovies)
+                val popularMovies = mapper.map(tmdbMovieResponse)
                 Result.Success(popularMovies)
             } else {
-                Result.Error(IOException("Error Occurred during getting api.getPopularMovie()"))
+                Result.Error(IOException("Error Occurred during getting api.getPopularMovie(), ${response.errorBody()}"))
             }
         } catch (e: Exception) {
             logWarning("fetchPopular: Error Occurred during getting api.getPopularMovie()", e)

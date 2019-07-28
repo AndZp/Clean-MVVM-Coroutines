@@ -3,12 +3,12 @@ package io.mateam.playground2.domain.useCase
 import io.mateam.playground2.domain.entity.Failure
 import io.mateam.playground2.domain.entity.PopularMovies
 import io.mateam.playground2.domain.entity.Result
-import io.mateam.playground2.domain.repo.MoviesRepo
+import io.mateam.playground2.domain.repo.PopularMoviesRepo
 import io.mateam.playground2.domain.utils.Either
 import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning
 
-class GetPopularMoviesPage(private val repo: MoviesRepo) : BaseUseCase<PopularMovies, GetPopularMoviesPage.Param>() {
+class GetPopularMoviesPage(private val repo: PopularMoviesRepo) : BaseUseCase<PopularMovies, GetPopularMoviesPage.Param>() {
 
     private var isEndReached = false
 
@@ -29,9 +29,10 @@ class GetPopularMoviesPage(private val repo: MoviesRepo) : BaseUseCase<PopularMo
     }
 
     private fun onSuccessResult(result: Result.Success<PopularMovies>): Either.Right<PopularMovies> {
-        logDebug("onSuccess: result [${result.data}]")
-        checkIsEndWasReached(result.data)
-        return Either.Right(result.data)
+        val popularMovies = result.data
+        logDebug("onSuccess: result [[${popularMovies.page}]:  return movies size ${popularMovies.movies.size}")
+        checkIsEndWasReached(popularMovies)
+        return Either.Right(popularMovies)
     }
 
     private fun checkIsEndWasReached(popularMovies: PopularMovies) {

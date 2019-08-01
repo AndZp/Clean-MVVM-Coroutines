@@ -1,31 +1,24 @@
 package io.mateam.playground
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import io.mateam.playground.presentation.popular.viewModel.PopularMoviesViewModel
-import io.mateam.playground2.data.utils.logDebug
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.appcompat.app.AppCompatActivity
+import io.mateam.playground.presentation.activity.MoviesActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private val popularMoviesViewModel:PopularMoviesViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initViewModel()
+        startMoviesActivity()
     }
 
-    override fun onResume() {
-        super.onResume()
-        popularMoviesViewModel.loadNextPage()
-    }
-
-
-    private fun initViewModel() {
-        popularMoviesViewModel.state.observe(this, Observer {
-            logDebug("popularMoviesViewModel.state  [${popularMoviesViewModel.state}]")
-        })
+    private fun startMoviesActivity() {
+        //Splash loading TBD
+        GlobalScope.launch {
+            delay(2000)
+            startActivity(MoviesActivity.getIntent(applicationContext))
+        }
     }
 }

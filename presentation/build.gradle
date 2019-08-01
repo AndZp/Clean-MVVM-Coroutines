@@ -28,6 +28,9 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -41,6 +44,10 @@ dependencies {
     // android support libs
     implementation presentationDependencies.appCompat
     implementation presentationDependencies.constraintLayout
+
+    // Navigation libs
+    implementation presentationDependencies.navUi
+    implementation presentationDependencies.navFragment
 
     //di
     implementation presentationDependencies.koin

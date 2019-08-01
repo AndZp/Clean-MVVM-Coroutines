@@ -28,6 +28,7 @@ ext {
     constraintLayoutVersion = '1.1.2'
     multidexVersion = '2.0.0'
     supportTest = '1.1.0-alpha1'
+    navVersion = "2.1.0-beta02"
 
     mockitoKotlinVersion = '2.0.0-RC1'
     mockitoCoreVersion = '2.21.0'
@@ -121,6 +122,8 @@ ext {
     presentationDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             appCompat             : "androidx.appcompat:appcompat:$supportVersion",
+            navFragment           : "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            navUi                 : "androidx.navigation:navigation-ui-ktx:$navVersion",
             material              : "com.google.android.material:material:$supportVersion",
             constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             recyclerview          : "androidx.recyclerview:recyclerview:$supportVersion",

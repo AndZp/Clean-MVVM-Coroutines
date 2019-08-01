@@ -29,6 +29,7 @@ ext {
     multidexVersion = '2.0.0'
     supportTest = '1.1.0-alpha1'
     navVersion = "2.1.0-beta02"
+    glideVersion = "4.9.0"
 
     mockitoKotlinVersion = '2.0.0-RC1'
     mockitoCoreVersion = '2.21.0'
@@ -144,6 +145,8 @@ ext {
             moshiCodegen          : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
             lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             lifecycleViewMovel    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            glide                 : "com.github.bumptech.glide:glide:$glideVersion",
+            glideProccessor       : "com.github.bumptech.glide:compiler:$glideVersion",
     ]
     presentationTestDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",

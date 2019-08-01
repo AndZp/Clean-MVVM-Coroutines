@@ -6,7 +6,9 @@ data class Movie(
     val voteAverage: Double,
     val title: String,
     val overview: String,
-    val adult: Boolean
+    val adult: Boolean,
+    val releaseData: String,
+    val originalLanguage: String
 )
 
 

@@ -17,7 +17,9 @@ class RemoteMoviesMapper {
                     voteAverage = tmdbMovie.vote_average,
                     overview = tmdbMovie.overview,
                     adult = tmdbMovie.adult,
-                    posterPath = MediaPathParser.getPosterPath(tmdbMovie.poster_path)
+                    posterPath = MediaPathParser.getPosterPath(tmdbMovie.poster_path),
+                    releaseData = tmdbMovie.release_date,
+                    originalLanguage = tmdbMovie.original_language
                 )
             }
         )

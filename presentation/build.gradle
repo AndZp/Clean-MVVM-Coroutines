@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -48,6 +49,11 @@ dependencies {
     // Navigation libs
     implementation presentationDependencies.navUi
     implementation presentationDependencies.navFragment
+
+    //Glide
+    implementation presentationDependencies.glide
+    kapt presentationDependencies.glideProccessor
+
 
     //di
     implementation presentationDependencies.koin

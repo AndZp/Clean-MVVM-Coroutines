@@ -1,11 +1,11 @@
 package io.mateam.playground2.data.dataSource.remote
 
-import io.mateam.playground2.domain.entity.Result
 import io.mateam.playground2.data.dataSource.remote.api.TmdbApi
 import io.mateam.playground2.data.dataSource.remote.entity.TmdbMovieResponse
 import io.mateam.playground2.data.dataSource.remote.mapper.RemoteMoviesMapper
 import io.mateam.playground2.data.utils.logWarning
 import io.mateam.playground2.domain.entity.PopularMovies
+import io.mateam.playground2.domain.entity.Result
 import retrofit2.Response
 import java.io.IOException
 

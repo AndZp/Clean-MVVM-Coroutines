@@ -11,7 +11,10 @@ class PopularMoviesUiMapper {
                 imageUrl = movie.posterPath,
                 voteAverage = movie.voteAverage,
                 title = movie.title,
-                adult = movie.adult
+                adult = movie.adult,
+                releaseData = movie.releaseData,
+                originalLanguage = movie.originalLanguage,
+                overview = movie.overview
             )
         }
     }

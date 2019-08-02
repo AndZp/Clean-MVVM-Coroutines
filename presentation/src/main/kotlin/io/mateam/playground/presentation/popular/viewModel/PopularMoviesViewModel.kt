@@ -19,12 +19,11 @@ class PopularMoviesViewModel(
     private val uiMapper: PopularMoviesUiMapper
 ) : ViewModel() {
 
-    val state = MutableLiveData<PopularMoviesState>().apply {
-        this.value = PopularMoviesState.Loading
-    }
+    val state = MutableLiveData<PopularMoviesState>()
 
     fun loadNextPage() {
         logDebug("loadNextPage: pagination.nextPage [${pagination.nextPage}]")
+        state.postValue(PopularMoviesState.Loading)
         val params = GetPopularMoviesPage.Param(pagination.nextPage)
         getPopularMoviesPage(viewModelScope, params) { it.either(::handleFailure, ::handleSuccess) }
     }
@@ -48,7 +47,6 @@ class PopularMoviesViewModel(
         state.postValue(PopularMoviesState.Success(uiMoviesModels))
     }
 }
-
 
 sealed class PopularMoviesState {
     object Loading : PopularMoviesState()

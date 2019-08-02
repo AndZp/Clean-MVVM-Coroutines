@@ -16,7 +16,7 @@ import io.mateam.playground.presentation.popular.adapter.MoviesAdapter
 import io.mateam.playground.presentation.popular.viewModel.PopularMoviesState
 import io.mateam.playground.presentation.popular.viewModel.PopularMoviesViewModel
 import io.mateam.playground.presentation.popular.viewModel.entity.MovieUiModel
-import io.mateam.playground.presentation.utils.PaginationScrollListener
+import io.mateam.playground.presentation.utils.EndlessRecyclerViewScrollListener
 import io.mateam.playground.presentation.utils.logDebug
 import kotlinx.android.synthetic.main.fragment_popular_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +26,7 @@ class PopularMoviesFragment : Fragment() {
 
     private val popularMoviesViewModel: PopularMoviesViewModel by viewModel()
     private lateinit var moviesAdapter: MoviesAdapter
+    private lateinit var paginationListener : EndlessRecyclerViewScrollListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,24 +53,12 @@ class PopularMoviesFragment : Fragment() {
         rvMovies.adapter = moviesAdapter
         rvMovies.layoutManager = linearLayoutManager
         rvMovies.itemAnimator = DefaultItemAnimator()
-        rvMovies.addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
-            override fun loadMoreItems() {
+        paginationListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 loadMore()
             }
-
-            override fun getTotalPageCount(): Int {
-                return 100
-            }
-
-            override fun isLastPage(): Boolean {
-                return false
-            }
-
-            override fun isLoading(): Boolean {
-                return false
-            }
-        })
-
+        }
+        rvMovies.addOnScrollListener(paginationListener)
     }
 
     private fun initViewModel() {
@@ -79,7 +68,7 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun onStateChanged(state: PopularMoviesState?) {
-        logDebug("popularMoviesViewModel.state  [${popularMoviesViewModel.state}]")
+        logDebug("popularMoviesViewModel.state  [${state?.javaClass?.simpleName}]")
         when (state) {
             is PopularMoviesState.Success -> updateMoviesList(state.movies)
             is PopularMoviesState.Loading -> showLoading()
@@ -101,15 +90,15 @@ class PopularMoviesFragment : Fragment() {
 
     private fun showLoading() {
         logDebug("showLoading")
+        paginationListener.setLoadingState(true)
         moviesAdapter.addLoadingFooter()
     }
 
     private fun hideLoading() {
         logDebug("hideLoading")
         moviesAdapter.removeLoadingFooter()
-
+        paginationListener.setLoadingState(false)
     }
-
 
     private fun loadMore() {
         logDebug("loadMore")

@@ -54,7 +54,6 @@ dependencies {
     implementation presentationDependencies.glide
     kapt presentationDependencies.glideProccessor
 
-
     //di
     implementation presentationDependencies.koin
     implementation presentationDependencies.koinScope

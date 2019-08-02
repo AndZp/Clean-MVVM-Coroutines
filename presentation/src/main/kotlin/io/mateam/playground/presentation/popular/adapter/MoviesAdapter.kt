@@ -16,7 +16,7 @@ import io.mateam.playground.presentation.R
 import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.LOADING
 import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.MOVIE
 import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.TOP_MOVIE
-import io.mateam.playground.presentation.popular.viewModel.entity.MovieUiModel
+import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.utils.GlideApp
 import io.mateam.playground.presentation.utils.logDebug
 import kotlinx.android.synthetic.main.item_hero.view.movie_desc
@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.item_hero.view.movie_year
 import kotlinx.android.synthetic.main.item_list.view.*
 import kotlinx.android.synthetic.main.item_progress.view.*
 
-class MoviesAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesAdapter(private val context: Context, private val onMovieClick: ((MovieUiModel) -> Unit)) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var moviesItems: MutableList<MoviesListItem> = mutableListOf()
 
@@ -60,12 +60,12 @@ class MoviesAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
             TOP_MOVIE -> {
                 val topMovieHolder = holder as TopMovie
                 val movie = (item as MoviesListItem.Top).movie
-                topMovieHolder.bind(movie)
+                topMovieHolder.bind(movie, onMovieClick)
             }
             MOVIE -> {
                 val movieVH = holder as MovieVH
                 val movie = (item as MoviesListItem.Movie).movie
-                movieVH.bind(movie)
+                movieVH.bind(movie, onMovieClick)
             }
             LOADING -> {
                 val loadingVH = holder as LoadingVH
@@ -120,6 +120,7 @@ class MoviesAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
         notifyItemRemoved(position)
     }
 
+    @Suppress("unused")
     fun clear() {
         isLoadingAdded = false
         while (itemCount > 0) {
@@ -139,7 +140,12 @@ class MoviesAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
      * Header ViewHolder
      */
     private inner class TopMovie(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: MovieUiModel) {
+        fun bind(
+            movie: MovieUiModel,
+            onMovieClick: (MovieUiModel) -> Unit
+        ) {
+            itemView.setOnClickListener { onMovieClick.invoke(movie) }
+
             itemView.movie_title.text = movie.title
             itemView.movie_year.text = formatYearLabel(movie)
             itemView.movie_desc.text = movie.overview
@@ -151,7 +157,13 @@ class MoviesAdapter(private val context: Context) : RecyclerView.Adapter<Recycle
      * Main list's content ViewHolder
      */
     private inner class MovieVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: MovieUiModel) {
+        fun bind(
+            movie: MovieUiModel,
+            onMovieClick: (MovieUiModel) -> Unit
+        ) {
+
+            itemView.setOnClickListener { onMovieClick.invoke(movie) }
+
             itemView.movie_title.text = movie.title
             itemView.movie_year.text = formatYearLabel(movie)
             itemView.movie_desc.text = movie.overview

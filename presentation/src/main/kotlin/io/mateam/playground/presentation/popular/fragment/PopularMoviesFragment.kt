@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.mateam.playground.presentation.R
+import io.mateam.playground.presentation.details.fragment.MoviesDetailsFragment
 import io.mateam.playground.presentation.popular.adapter.MoviesAdapter
 import io.mateam.playground.presentation.popular.viewModel.PopularMoviesState
 import io.mateam.playground.presentation.popular.viewModel.PopularMoviesViewModel
-import io.mateam.playground.presentation.popular.viewModel.entity.MovieUiModel
+import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.utils.EndlessRecyclerViewScrollListener
 import io.mateam.playground.presentation.utils.logDebug
 import kotlinx.android.synthetic.main.fragment_popular_movies.*
@@ -47,18 +49,24 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun initMoviesRV() {
-        moviesAdapter = MoviesAdapter(requireContext())
-        val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        moviesAdapter = MoviesAdapter(requireContext(), this::onMovieClicked)
 
-        rvMovies.adapter = moviesAdapter
-        rvMovies.layoutManager = linearLayoutManager
-        rvMovies.itemAnimator = DefaultItemAnimator()
-        paginationListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        paginationListener = buildPaginationScrollListener(linearLayoutManager)
+        with(rvMovies) {
+            adapter = moviesAdapter
+            layoutManager = linearLayoutManager
+            itemAnimator = DefaultItemAnimator()
+            addOnScrollListener(paginationListener)
+        }
+    }
+
+    private fun buildPaginationScrollListener(layoutManager: LinearLayoutManager): EndlessRecyclerViewScrollListener {
+        return object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 loadMore()
             }
         }
-        rvMovies.addOnScrollListener(paginationListener)
     }
 
     private fun initViewModel() {
@@ -103,5 +111,13 @@ class PopularMoviesFragment : Fragment() {
     private fun loadMore() {
         logDebug("loadMore")
         popularMoviesViewModel.loadNextPage()
+    }
+
+    private fun onMovieClicked(movie:MovieUiModel) {
+        logDebug("onMovieClicked: movie id [${movie.id}], title [${movie.title}]")
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(
+            R.id.action_popularMoviesFragment_to_moviesDetailsFragment,
+            MoviesDetailsFragment.buildBundle(movie)
+        )
     }
 }

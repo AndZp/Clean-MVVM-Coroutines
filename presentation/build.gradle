@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -32,6 +33,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -52,6 +57,7 @@ dependencies {
 
     //Glide
     implementation presentationDependencies.glide
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt presentationDependencies.glideProccessor
 
     //di
@@ -66,6 +72,8 @@ dependencies {
     // Timber log
     implementation dataDependencies.timber
 
+    implementation 'co.lujun:androidtagview:1.1.7'
+
     // test
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.koinTest
@@ -75,5 +83,4 @@ dependencies {
     androidTestImplementation presentationTestDependencies.espressoContrib
     implementation presentationTestDependencies.espressoIdlingResource
     androidTestImplementation presentationTestDependencies.supportAnnotations
-
 }

@@ -1,6 +1,6 @@
-package io.mateam.playground.presentation.popular.viewModel.mapper
+package io.mateam.playground.presentation.popular.mapper
 
-import io.mateam.playground.presentation.popular.viewModel.entity.MovieUiModel
+import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground2.domain.entity.Movie
 
 class PopularMoviesUiMapper {

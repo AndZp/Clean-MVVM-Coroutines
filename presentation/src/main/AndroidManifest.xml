@@ -3,7 +3,8 @@
           package="io.mateam.playground.presentation">
 
     <application>
-        <activity android:name=".activity.MoviesActivity">
+        <activity android:name=".activity.MoviesActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

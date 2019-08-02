@@ -3,9 +3,9 @@ package io.mateam.playground.presentation.popular.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.mateam.playground.presentation.popular.viewModel.entity.MovieUiModel
-import io.mateam.playground.presentation.popular.viewModel.mapper.PopularMoviesUiMapper
-import io.mateam.playground.presentation.popular.viewModel.paginator.PopularMoviesPagination
+import io.mateam.playground.presentation.popular.entity.MovieUiModel
+import io.mateam.playground.presentation.popular.mapper.PopularMoviesUiMapper
+import io.mateam.playground.presentation.popular.paginator.PopularMoviesPagination
 import io.mateam.playground2.domain.entity.Failure
 import io.mateam.playground2.domain.entity.Movie
 import io.mateam.playground2.domain.entity.PopularMovies

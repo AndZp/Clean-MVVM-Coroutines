@@ -1,6 +1,9 @@
-package io.mateam.playground.presentation.popular.viewModel.entity
+package io.mateam.playground.presentation.popular.entity
 
-data class MovieUiModel(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize data class MovieUiModel(
     val id: Int,
     val imageUrl: String,
     val voteAverage: Double,
@@ -9,4 +12,4 @@ data class MovieUiModel(
     val releaseData: String,
     val originalLanguage: String,
     val overview:String
-)
+):Parcelable

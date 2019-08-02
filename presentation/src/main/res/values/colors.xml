@@ -3,7 +3,9 @@
     <color name="colorPrimary">#5F4BB6</color>
     <color name="colorPrimaryDark">#433582</color>
     <color name="colorAccent">#26F0F1</color>
-    <color name="background">#EFEFEF</color>
+    <color name="background">#303030</color>
     <color name="placeholder_grey">#AAADC4</color>
     <color name="placeholder_grey_20">#33AAADC4</color>
+    <color name="background800">#424242</color>
+    <color name="background900">#212121</color>
 </resources>

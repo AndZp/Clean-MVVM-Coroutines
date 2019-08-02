@@ -1,4 +1,4 @@
-package io.mateam.playground.presentation.popular.viewModel.paginator
+package io.mateam.playground.presentation.popular.paginator
 
 import io.mateam.playground2.domain.entity.Movie
 import io.mateam.playground2.domain.entity.PopularMovies

@@ -22,7 +22,7 @@ ext {
     moshiVersion="1.8.0"
     okhttp3Version = "3.12.0"
     okhttpLoggingVersion = "3.12.0"
-    roomVersion = '2.1.0-alpha01'//'2.0.0-beta01'
+    roomVersion = '2.2.0-alpha01'
     junitVersion = '4.12'
     mockitoVersion = '2.8.47'
     constraintLayoutVersion = '1.1.2'
@@ -55,7 +55,7 @@ ext {
             okhttpLogging         : "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion",
             room                  : "androidx.room:room-runtime:$roomVersion",
             roomCompiler          : "androidx.room:room-compiler:$roomVersion",
-            roomCommon            : "androidx.room:room-common:$roomVersion",
+            roomKtx               : "androidx.room:room-ktx:$roomVersion",
             moshi                 : "com.squareup.moshi:moshi-kotlin:$moshiVersion",
             moshiCodegen          : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
             lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
@@ -107,7 +107,7 @@ ext {
             okhttpLogging         : "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion",
             room                  : "androidx.room:room-runtime:$roomVersion",
             roomCompiler          : "androidx.room:room-compiler:$roomVersion",
-            roomCommon            : "androidx.room:room-common:$roomVersion",
+            roomKtx            : "androidx.room:room-ktx:$roomVersion",
             moshi                 : "com.squareup.moshi:moshi-kotlin:$moshiVersion",
             moshiCodegen          : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
     ]

@@ -73,6 +73,12 @@ dependencies {
     implementation dataDependencies.okhttp
     implementation dataDependencies.okhttpLogging
 
+    //Room
+    implementation dataDependencies.room
+    implementation dataDependencies.roomKtx
+    kapt dataDependencies.roomCompiler
+
+
     // Timber log
     implementation dataDependencies.timber
 

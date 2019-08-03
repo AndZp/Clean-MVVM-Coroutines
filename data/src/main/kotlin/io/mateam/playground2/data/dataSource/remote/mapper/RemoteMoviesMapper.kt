@@ -29,7 +29,6 @@ class RemoteMoviesMapper {
         return MovieFullDetails(
             adult = response.adult,
             backdrop_path = response.backdrop_path,
-            belongs_to_collection = response.belongs_to_collection,
             budget = response.budget,
             genres = response.genres.map { mapGenre(it) },
             homepage = response.homepage,
@@ -50,8 +49,7 @@ class RemoteMoviesMapper {
             title = response.title,
             vote_average = response.vote_average,
             vote_count = response.vote_count,
-            video = response.video,
-            production_countries = response.production_companies
+            video = response.video
         )
     }
 

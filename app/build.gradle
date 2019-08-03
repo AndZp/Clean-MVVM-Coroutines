@@ -73,7 +73,11 @@ dependencies {
     implementation appDependencies.koinScope
     implementation appDependencies.koinViewModel
 
-    //
+    //Room
+    implementation appDependencies.room
+    implementation appDependencies.roomKtx
+
+    //stetho
     implementation appDependencies.stetho
     implementation appDependencies.stethoOkHttp
 

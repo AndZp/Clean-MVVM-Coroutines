@@ -6,19 +6,19 @@ object MediaPathParser {
   private const val YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v="
   private const val YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/"
 
-  fun getPosterPath(posterPath: String): String {
+  fun getPosterPath(posterPath: String?): String {
     return BASE_POSTER_PATH + posterPath
   }
 
-  fun getBackdropPath(backdropPath: String): String {
+  fun getBackdropPath(backdropPath: String?): String {
     return BASE_BACKDROP_PATH + backdropPath
   }
 
-  fun getYoutubeVideoPath(videoPath: String): String {
+  fun getYoutubeVideoPath(videoPath: String?): String {
     return YOUTUBE_VIDEO_URL + videoPath
   }
 
-  fun getYoutubeThumbnailPath(thumbnailPath: String): String {
+  fun getYoutubeThumbnailPath(thumbnailPath: String?): String {
     return "$YOUTUBE_THUMBNAIL_URL$thumbnailPath/default.jpg"
   }
 }

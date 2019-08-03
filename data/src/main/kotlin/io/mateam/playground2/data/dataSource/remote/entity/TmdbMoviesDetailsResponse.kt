@@ -6,7 +6,7 @@ data class TmdbMoviesDetailsResponse(
     val belongs_to_collection: Any,
     val budget: Int,
     val genres: List<Genre>,
-    val homepage: String,
+    val homepage: String?,
     val id: Int,
     val imdb_id: String,
     val original_language: String,

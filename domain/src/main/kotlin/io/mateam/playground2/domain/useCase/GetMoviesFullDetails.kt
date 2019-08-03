@@ -8,7 +8,7 @@ import io.mateam.playground2.domain.utils.Either
 import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning
 
-class GetMoviesByID(private val repo: MoviesRepo) : BaseUseCase<MovieFullDetails, GetMoviesByID.Param>() {
+class GetMoviesFullDetails(private val repo: MoviesRepo) : BaseUseCase<MovieFullDetails, GetMoviesFullDetails.Param>() {
     override suspend fun run(params: Param): Either<GetMovieFailure, MovieFullDetails> {
         return when (val result = repo.getMovie(params.id)) {
             is Result.Success -> onSuccessResult(result)
@@ -27,7 +27,7 @@ class GetMoviesByID(private val repo: MoviesRepo) : BaseUseCase<MovieFullDetails
         return Either.Right(movie)
     }
 
-    data class Param(val id: String)
+    data class Param(val id: Int)
 
     sealed class GetMovieFailure(featureException: Exception = Exception("Feature failure")) :
         Failure.FeatureFailure(featureException) {

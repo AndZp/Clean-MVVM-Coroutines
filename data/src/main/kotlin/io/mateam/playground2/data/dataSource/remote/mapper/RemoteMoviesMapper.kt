@@ -25,7 +25,6 @@ class RemoteMoviesMapper {
         )
     }
 
-
     fun mapFullDetails(response: TmdbMoviesDetailsResponse): MovieFullDetails {
         return MovieFullDetails(
             adult = response.adult,

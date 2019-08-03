@@ -1,5 +1,8 @@
 package io.mateam.playground2.domain.utils
 
+import io.mateam.playground2.domain.entity.MovieFullDetails
+import kotlin.reflect.KFunction1
+
 /**
  * Represents a value of one of two possible types (a disjoint union).
  * Instances of [Either] are either an instance of [Left] or [Right].

@@ -16,7 +16,7 @@ import java.io.IOException
 
 interface RemoteMoviesDataSource {
     suspend fun getPopular(page: Int): Result<PopularMovies>
-    suspend fun getMovie(id: String): Result<MovieFullDetails>
+    suspend fun getMovie(id: Int): Result<MovieFullDetails>
     suspend fun getReview(id: Int, page: Int): Result<MovieReviews>
 }
 
@@ -42,7 +42,7 @@ class TmdbMoviesApiDataSource(
         }
     }
 
-    override suspend fun getMovie(id: String): Result<MovieFullDetails> {
+    override suspend fun getMovie(id: Int): Result<MovieFullDetails> {
         return try {
             val response: Response<TmdbMoviesDetailsResponse> = api.getMovie(id)
             val tmdbMovieResponse = response.body()

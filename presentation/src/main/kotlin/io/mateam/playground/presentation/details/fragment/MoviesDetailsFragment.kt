@@ -53,7 +53,6 @@ class MoviesDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initViewModel()
-        moviesDetailsViewModel.loadMoreReview()
     }
 
     private fun bindMovieModel() {
@@ -66,6 +65,12 @@ class MoviesDetailsFragment : Fragment() {
             .into(movie_detail_poster)
     }
 
+    private fun bindGenres(genres: List<String>) {
+        detail_body_tags.visibility = View.VISIBLE
+        genres.forEach { genre ->
+            detail_body_tags.addTag(genre)
+        }
+    }
 
     private fun initReviewsRV() {
         reviewsAdapter = ReviewsAdapter(requireContext())
@@ -89,9 +94,9 @@ class MoviesDetailsFragment : Fragment() {
         }
     }
 
-
     private fun initViewModel() {
         moviesDetailsViewModel.reviewState.observe(this, Observer { onReviewStateChanged(it) })
+        moviesDetailsViewModel.genersTags.observe(this, Observer { bindGenres(it) })
     }
 
     private fun onReviewStateChanged(state: MoviesReviewState?) {
@@ -116,7 +121,13 @@ class MoviesDetailsFragment : Fragment() {
 
     private fun updateReviewList(reviews: List<ReviewUiModel>) {
         logDebug("updateReviewList reviews [${reviews.size}]")
+        showReviewComponents()
         reviewsAdapter.update(reviews)
+    }
+
+    private fun showReviewComponents() {
+        detail_body_recyclerView_reviews.visibility = View.VISIBLE
+        detail_body_reviews.visibility = View.VISIBLE
     }
 
     companion object {

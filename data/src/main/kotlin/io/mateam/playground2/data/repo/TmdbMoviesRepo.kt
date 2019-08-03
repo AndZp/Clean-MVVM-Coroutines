@@ -28,7 +28,7 @@ class TmdbMoviesRepo(
         }
     }
 
-    override suspend fun getMovie(id: String): Result<MovieFullDetails> {
+    override suspend fun getMovie(id: Int): Result<MovieFullDetails> {
         //TBD: local caching in DB
         return remote.getMovie(id)
     }

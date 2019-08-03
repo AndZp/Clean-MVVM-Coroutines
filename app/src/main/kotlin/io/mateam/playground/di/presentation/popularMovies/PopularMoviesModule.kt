@@ -9,6 +9,7 @@ import io.mateam.playground.presentation.popular.paginator.PaginationHelper
 import io.mateam.playground.presentation.popular.viewModel.PopularMoviesViewModel
 import io.mateam.playground2.domain.entity.Movie
 import io.mateam.playground2.domain.useCase.GetMovieReview
+import io.mateam.playground2.domain.useCase.GetMoviesFullDetails
 import io.mateam.playground2.domain.useCase.GetPopularMoviesPage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -26,6 +27,7 @@ val popularMoviesModule = module {
         MovieDetailsViewModel(
             movieId,
             get<GetMovieReview>(),
+            get<GetMoviesFullDetails>(),
             MoviesDetailsUiMapper(),
             PaginationHelper()
         )

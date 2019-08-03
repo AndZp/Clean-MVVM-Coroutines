@@ -8,7 +8,7 @@ import io.mateam.playground2.domain.entity.Result
 interface MoviesRepo {
     suspend fun getPopularMovies(page: Int): Result<PopularMovies>
 
-    suspend fun getMovie(id: String): Result<MovieFullDetails>
+    suspend fun getMovie(id: Int): Result<MovieFullDetails>
 
     suspend fun getReviews(id: Int, page: Int): Result<MovieReviews>
 }

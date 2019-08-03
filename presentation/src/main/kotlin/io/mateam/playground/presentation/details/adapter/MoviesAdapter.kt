@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.mateam.playground.presentation.R
 import io.mateam.playground.presentation.details.entity.ReviewUiModel
-import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.LOADING
-import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.MOVIE
+import io.mateam.playground.presentation.common.adapter.MoviesAdapter.ViewType.LOADING
+import io.mateam.playground.presentation.common.adapter.MoviesAdapter.ViewType.MOVIE
 import io.mateam.playground.presentation.utils.logDebug
 import kotlinx.android.synthetic.main.item_progress.view.*
 import kotlinx.android.synthetic.main.item_review.view.*

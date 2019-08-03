@@ -39,7 +39,7 @@ class FavoriteMoviesImpl(
     }
 
     override fun remove(movieId: Int) {
-        if (!favorites.contains(movieId)) {
+        if (favorites.contains(movieId)) {
             favorites.remove(movieId)
         }
     }

@@ -8,7 +8,7 @@ import io.mateam.playground.di.data.reposModule
 import io.mateam.playground.di.data.remoteDataSourceModule
 import io.mateam.playground.di.domain.managersModule
 import io.mateam.playground.di.domain.useCasesModule
-import io.mateam.playground.di.presentation.popularMovies.popularMoviesModule
+import io.mateam.playground.di.presentation.popularMovies.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -42,7 +42,7 @@ class App : Application() {
                     reposModule,
                     managersModule,
                     useCasesModule,
-                    popularMoviesModule
+                    viewModelsModule
                 )
             )
         }

@@ -10,7 +10,7 @@ import io.mateam.playground2.domain.useCase.UpdateUserMovieFavoriteState
 import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning
 
-class FavoriteMoviesViewModel(
+class MovieFavoriteStateViewModel(
     private val movieId: Int,
     private val checkMovieInFavorite: CheckMovieInFavorite,
     private val updateFavoriteState: UpdateUserMovieFavoriteState,
@@ -58,10 +58,9 @@ class FavoriteMoviesViewModel(
     }
 
     private fun handleFavoriteStateSuccess(isInFavorite: Boolean) {
-        logDebug("handleFavoriteStateSuccess, movie id = [$movieId, isInFavorite [$isInFavorite")
+        logDebug("handleFavoriteStateSuccess, movie id = [$movieId, isInFavorite [$isInFavorite]")
         favoriteStateHelper.init(isInFavorite)
     }
-
 
     private fun postFavoriteState(inFavorite: Boolean) {
         logDebug("postFavoriteState:  inFavorite[$inFavorite]")

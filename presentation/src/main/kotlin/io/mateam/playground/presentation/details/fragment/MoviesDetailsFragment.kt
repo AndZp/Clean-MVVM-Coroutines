@@ -17,7 +17,7 @@ import io.mateam.playground.presentation.details.entity.ReviewUiModel
 import io.mateam.playground.presentation.details.viewModel.FavoriteState
 import io.mateam.playground.presentation.details.viewModel.MovieDetailsViewModel
 import io.mateam.playground.presentation.details.viewModel.MoviesReviewState
-import io.mateam.playground.presentation.details.viewModel.FavoriteMoviesViewModel
+import io.mateam.playground.presentation.details.viewModel.MovieFavoriteStateViewModel
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.utils.EndlessRecyclerViewScrollListener
 import io.mateam.playground.presentation.utils.GlideApp
@@ -33,7 +33,7 @@ class MoviesDetailsFragment : Fragment() {
     private val movie: MovieUiModel by NotNullParcelableArg(MOVIE_MODEL_ARG_KEY)
 
     private val moviesDetailsViewModel: MovieDetailsViewModel by viewModel { parametersOf(movie.id) }
-    private val favoriteMoviesViewModel: FavoriteMoviesViewModel by viewModel { parametersOf(movie.id) }
+    private val movieFavoriteStateViewModel: MovieFavoriteStateViewModel by viewModel { parametersOf(movie.id) }
 
     private lateinit var reviewsAdapter: ReviewsAdapter
     private lateinit var paginationListener: EndlessRecyclerViewScrollListener
@@ -60,7 +60,7 @@ class MoviesDetailsFragment : Fragment() {
     private fun bindMovieModel() {
         detail_header_title.text = movie.title
         detail_header_release.text = movie.releaseData
-        detail_header_star.rating = (movie.voteAverage / 2).toFloat()
+        detail_header_star.rating = (movie.voteAverage?.div(2))?.toFloat() ?: 0f
         detail_body_summary.text = movie.overview
         GlideApp.with(requireContext())
             .load(movie.imageUrl)
@@ -76,7 +76,7 @@ class MoviesDetailsFragment : Fragment() {
 
     private fun initFavoriteFAB() {
         fab_like.setOnClickListener {
-            favoriteMoviesViewModel.notifyFavoriteClicked()
+            movieFavoriteStateViewModel.notifyFavoriteClicked()
         }
     }
 
@@ -107,7 +107,7 @@ class MoviesDetailsFragment : Fragment() {
             genersTags.observe(this@MoviesDetailsFragment, Observer { bindGenres(it) })
         }
 
-        with(favoriteMoviesViewModel) {
+        with(movieFavoriteStateViewModel) {
             favoriteState.observe(this@MoviesDetailsFragment, Observer { favoriteStateChanged(it) })
         }
     }

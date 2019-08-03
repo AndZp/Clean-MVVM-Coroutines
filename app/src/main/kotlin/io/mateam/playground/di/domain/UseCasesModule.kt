@@ -17,5 +17,7 @@ val useCasesModule = module {
     factory<CheckMovieInFavorite> { CheckMovieInFavorite(get<UserManager>()) }
 
     factory<UpdateUserMovieFavoriteState> { UpdateUserMovieFavoriteState(get<UserManager>()) }
+
+    factory<GetUserFavoritesMovies> { GetUserFavoritesMovies(get<MoviesRepo>(), get<UserManager>()) }
 }
 

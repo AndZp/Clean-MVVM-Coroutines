@@ -3,8 +3,8 @@ package io.mateam.playground.presentation.popular.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.mateam.playground.presentation.popular.entity.MovieUiModel
-import io.mateam.playground.presentation.popular.mapper.PopularMoviesUiMapper
+import io.mateam.playground.presentation.common.entity.UiMoviesState
+import io.mateam.playground.presentation.popular.mapper.MoviesUiMapper
 import io.mateam.playground.presentation.popular.paginator.PaginationHelper
 import io.mateam.playground2.domain.entity.result.Failure
 import io.mateam.playground2.domain.entity.movie.Movie
@@ -16,14 +16,14 @@ import io.mateam.playground2.domain.utils.logWarning
 class PopularMoviesViewModel(
     private val getPopularMoviesPage: GetPopularMoviesPage,
     private val paginationHelper: PaginationHelper<Movie>,
-    private val uiMapper: PopularMoviesUiMapper
+    private val uiMapper: MoviesUiMapper
 ) : ViewModel() {
 
-    val state = MutableLiveData<PopularMoviesState>()
+    val state = MutableLiveData<UiMoviesState>()
 
     fun loadNextPage() {
         logDebug("loadNextPage: paginationHelper.nextPage [${paginationHelper.nextPage}]")
-        state.postValue(PopularMoviesState.Loading)
+        state.postValue(UiMoviesState.Loading)
         val params = GetPopularMoviesPage.Param(paginationHelper.nextPage)
         getPopularMoviesPage(viewModelScope, params) { it.either(::handleFailure, ::handleSuccess) }
     }
@@ -31,7 +31,7 @@ class PopularMoviesViewModel(
     private fun handleFailure(failure: Failure) {
         logDebug("handleFailure: [${failure.javaClass.simpleName}]")
         when (failure) {
-            is GetPopularMoviesPage.GetPopularFailure.LoadError -> state.postValue(PopularMoviesState.LoadingError)
+            is GetPopularMoviesPage.GetPopularFailure.LoadError -> state.postValue(UiMoviesState.LoadingError)
             else -> logWarning("handleFailure: Unexpected failure [$failure]")
         }
     }
@@ -43,13 +43,7 @@ class PopularMoviesViewModel(
     }
 
     private fun postPopularMovies(allMovies: MutableList<Movie>) {
-        val uiMoviesModels = uiMapper.map(allMovies)
-        state.postValue(PopularMoviesState.Success(uiMoviesModels))
+        val uiMoviesModels = uiMapper.mapFromMovies(allMovies)
+        state.postValue(UiMoviesState.Success(uiMoviesModels))
     }
-}
-
-sealed class PopularMoviesState {
-    object Loading : PopularMoviesState()
-    object LoadingError : PopularMoviesState()
-    data class Success(val movies: List<MovieUiModel>) : PopularMoviesState()
 }

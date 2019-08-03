@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/popularMoviesFragment">
+            app:startDestination="@id/navigation_popular">
 
-    <fragment android:id="@+id/popularMoviesFragment"
+    <fragment android:id="@+id/navigation_popular"
               android:name="io.mateam.playground.presentation.popular.fragment.PopularMoviesFragment"
               android:label="PopularMoviesFragment">
         <action
@@ -20,5 +20,11 @@
                 app:argType="io.mateam.playground.presentation.popular.entity.MovieUiModel">
 
         </argument>
+    </fragment>
+    <fragment android:id="@+id/navigation_favorite"
+              android:name="io.mateam.playground.presentation.favorite.fragment.FavoriteMoviesFragment"
+              android:label="FavoriteMoviesFragment">
+        <action android:id="@+id/action_navigation_favorite_to_moviesDetailsFragment"
+                app:destination="@id/moviesDetailsFragment"/>
     </fragment>
 </navigation>

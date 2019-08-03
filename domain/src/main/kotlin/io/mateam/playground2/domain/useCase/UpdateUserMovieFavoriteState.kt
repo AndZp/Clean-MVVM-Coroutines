@@ -9,19 +9,19 @@ import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning
 
 class UpdateUserMovieFavoriteState(private val userManager: UserManager) : BaseUseCase<Unit, UpdateUserMovieFavoriteState.Param>() {
-    override suspend fun run(params: Param): Either<CheckFavoriteStateFailure, Unit> {
+    override suspend fun run(params: Param): Either<UpdateFavoriteStateFailure, Unit> {
         return when (val result = userManager.getOrCreateUser()) {
-            is Result.Success -> onSuccessResult(result, params)
-            is Result.Error -> onErrorResult(result)
+            is Result.Success -> onUserReceived(result, params)
+            is Result.Error -> onErrorReceiveUser(result)
         }
     }
 
-    private fun onErrorResult(result: Result.Error): Either.Left<CheckFavoriteStateFailure.LoadError> {
-        logWarning("onErrorResult", result.exception)
-        return Either.Left(CheckFavoriteStateFailure.LoadError(result.exception))
+    private fun onErrorReceiveUser(result: Result.Error): Either.Left<UpdateFavoriteStateFailure.LoadError> {
+        logWarning("onErrorReceiveUser", result.exception)
+        return Either.Left(UpdateFavoriteStateFailure.LoadError(result.exception))
     }
 
-    private suspend fun onSuccessResult(result: Result.Success<User>, param: Param): Either.Right<Unit> {
+    private suspend fun onUserReceived(result: Result.Success<User>, param: Param): Either.Right<Unit> {
         val user = result.data
         if (param.inFavorite){
             user.favoritesMovies.add(param.movieId)
@@ -35,8 +35,7 @@ class UpdateUserMovieFavoriteState(private val userManager: UserManager) : BaseU
 
     data class Param(val movieId: Int, val inFavorite: Boolean)
 
-    sealed class CheckFavoriteStateFailure(featureException: Exception = Exception("Feature failure")) :
-        Failure.FeatureFailure(featureException) {
-        data class LoadError(val error: Exception) : CheckFavoriteStateFailure(error)
+    sealed class UpdateFavoriteStateFailure(featureException: Exception = Exception("Feature failure")) : Failure.FeatureFailure(featureException) {
+        data class LoadError(val error: Exception) : UpdateFavoriteStateFailure(error)
     }
 }

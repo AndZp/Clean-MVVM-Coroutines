@@ -1,4 +1,4 @@
-package io.mateam.playground.presentation.popular.adapter
+package io.mateam.playground.presentation.common.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -13,9 +13,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import io.mateam.playground.presentation.R
-import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.LOADING
-import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.MOVIE
-import io.mateam.playground.presentation.popular.adapter.MoviesAdapter.ViewType.TOP_MOVIE
+import io.mateam.playground.presentation.common.adapter.MoviesAdapter.ViewType.LOADING
+import io.mateam.playground.presentation.common.adapter.MoviesAdapter.ViewType.MOVIE
+import io.mateam.playground.presentation.common.adapter.MoviesAdapter.ViewType.TOP_MOVIE
+import io.mateam.playground.presentation.popular.diffUtils.MovieListItemsDiffCallback
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.utils.GlideApp
 import io.mateam.playground.presentation.utils.logDebug
@@ -84,7 +85,7 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
     }
 
     private fun formatYearLabel(movie: MovieUiModel): String {
-        return ("${movie.releaseData.substring(0, 4)} | ${movie.originalLanguage.toUpperCase()}")
+        return ("${movie.releaseData?.substring(0, 4)} | ${movie.originalLanguage?.toUpperCase()}")
     }
 
     private fun loadImage(imageUrl: String): RequestBuilder<Drawable> {
@@ -95,9 +96,18 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
     }
 
     fun update(updatedMovies: List<MovieUiModel>) {
-        val movieItems = updatedMovies.map { movieUiModel -> MoviesListItem.Movie(movieUiModel) }
+        val movieItems = updatedMovies.map { movieUiModel ->
+            MoviesListItem.Movie(
+                movieUiModel
+            )
+        }
         logDebug("update: old size [${this.moviesItems.size}], updated size [${movieItems.size}]")
-        val diffResult = DiffUtil.calculateDiff(MovieListItemsDiffCallback(movieItems, this.moviesItems))
+        val diffResult = DiffUtil.calculateDiff(
+            MovieListItemsDiffCallback(
+                movieItems,
+                this.moviesItems
+            )
+        )
         moviesItems.apply {
             clear()
             addAll(movieItems)

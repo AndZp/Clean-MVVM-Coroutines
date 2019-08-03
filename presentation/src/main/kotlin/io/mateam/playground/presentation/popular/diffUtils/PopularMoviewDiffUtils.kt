@@ -1,6 +1,7 @@
-package io.mateam.playground.presentation.popular.adapter
+package io.mateam.playground.presentation.popular.diffUtils
 
 import androidx.recyclerview.widget.DiffUtil
+import io.mateam.playground.presentation.common.adapter.MoviesListItem
 
 
 class MovieListItemsDiffCallback(

@@ -4,10 +4,10 @@ package io.mateam.playground.di.data
 
 import io.mateam.playground2.data.dataSource.cache.InMemoryCacheDataSource
 import io.mateam.playground2.data.dataSource.remote.RemoteMoviesDataSource
-import io.mateam.playground2.data.repo.TmdbPopularMoviesRepo
-import io.mateam.playground2.domain.repo.PopularMoviesRepo
+import io.mateam.playground2.data.repo.TmdbMoviesRepo
+import io.mateam.playground2.domain.repo.MoviesRepo
 import org.koin.dsl.module
 
 val moviesRepoModule = module {
-    single<PopularMoviesRepo> { TmdbPopularMoviesRepo(get<RemoteMoviesDataSource>(), InMemoryCacheDataSource()) }
+    single<MoviesRepo> { TmdbMoviesRepo(get<RemoteMoviesDataSource>(), InMemoryCacheDataSource()) }
 }

@@ -8,6 +8,7 @@ import io.mateam.playground2.data.dataSource.remote.TmdbMoviesApiDataSource
 import io.mateam.playground2.data.dataSource.remote.api.TmdbApi
 import io.mateam.playground2.data.dataSource.remote.interceptor.TmdbAuthInterceptor
 import io.mateam.playground2.data.dataSource.remote.mapper.RemoteMoviesMapper
+import io.mateam.playground2.data.dataSource.remote.mapper.RemoteReviewsMapper
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -33,8 +34,10 @@ val remoteDataSourceModule = module {
 
     factory<TmdbApi> { get<Retrofit>().create(TmdbApi::class.java) }
 
-    factory<RemoteMoviesMapper> { RemoteMoviesMapper() }
+    single<RemoteMoviesMapper> { RemoteMoviesMapper() }
 
-    single<RemoteMoviesDataSource> { TmdbMoviesApiDataSource(get<TmdbApi>(), get<RemoteMoviesMapper>()) }
+    single<RemoteReviewsMapper> { RemoteReviewsMapper() }
+
+    single<RemoteMoviesDataSource> { TmdbMoviesApiDataSource(get<TmdbApi>(), get<RemoteMoviesMapper>(), get<RemoteReviewsMapper>() ) }
 }
 

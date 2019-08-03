@@ -3,12 +3,12 @@ package io.mateam.playground2.domain.useCase
 import io.mateam.playground2.domain.entity.Failure
 import io.mateam.playground2.domain.entity.PopularMovies
 import io.mateam.playground2.domain.entity.Result
-import io.mateam.playground2.domain.repo.PopularMoviesRepo
+import io.mateam.playground2.domain.repo.MoviesRepo
 import io.mateam.playground2.domain.utils.Either
 import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning
 
-class GetPopularMoviesPage(private val repo: PopularMoviesRepo) : BaseUseCase<PopularMovies, GetPopularMoviesPage.Param>() {
+class GetPopularMoviesPage(private val repo: MoviesRepo) : BaseUseCase<PopularMovies, GetPopularMoviesPage.Param>() {
 
     private var isEndReached = false
 

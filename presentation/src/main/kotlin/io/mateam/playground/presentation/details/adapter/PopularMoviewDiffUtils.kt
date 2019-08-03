@@ -1,12 +1,12 @@
-package io.mateam.playground.presentation.popular.adapter
+package io.mateam.playground.presentation.details.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import io.mateam.playground.presentation.utils.logDebug
 
 
-class MovieListItemsDiffCallback(
-    private var updated: List<MoviesListItem>,
-    private var old: List<MoviesListItem>
+class ReviewItemsDiffCallback(
+    private var updated: List<ReviewListItem>,
+    private var old: List<ReviewListItem>
 ) :
     DiffUtil.Callback() {
 

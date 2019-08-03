@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.popular.mapper.PopularMoviesUiMapper
-import io.mateam.playground.presentation.popular.paginator.PopularMoviesPagination
+import io.mateam.playground.presentation.popular.paginator.PaginationHelper
 import io.mateam.playground2.domain.entity.Failure
 import io.mateam.playground2.domain.entity.Movie
 import io.mateam.playground2.domain.entity.PopularMovies
@@ -15,16 +15,16 @@ import io.mateam.playground2.domain.utils.logWarning
 
 class PopularMoviesViewModel(
     private val getPopularMoviesPage: GetPopularMoviesPage,
-    private val pagination: PopularMoviesPagination,
+    private val paginationHelper: PaginationHelper<Movie>,
     private val uiMapper: PopularMoviesUiMapper
 ) : ViewModel() {
 
     val state = MutableLiveData<PopularMoviesState>()
 
     fun loadNextPage() {
-        logDebug("loadNextPage: pagination.nextPage [${pagination.nextPage}]")
+        logDebug("loadNextPage: paginationHelper.nextPage [${paginationHelper.nextPage}]")
         state.postValue(PopularMoviesState.Loading)
-        val params = GetPopularMoviesPage.Param(pagination.nextPage)
+        val params = GetPopularMoviesPage.Param(paginationHelper.nextPage)
         getPopularMoviesPage(viewModelScope, params) { it.either(::handleFailure, ::handleSuccess) }
     }
 
@@ -38,8 +38,8 @@ class PopularMoviesViewModel(
 
     private fun handleSuccess(moviesPage: PopularMovies) {
         logDebug("handleSuccess, moviesPage page =  [${moviesPage.page}, moviesSize = [${moviesPage.movies.size}]]")
-        pagination.onSuccessLoad(moviesPage)
-        postPopularMovies(pagination.allMovies)
+        paginationHelper.onSuccessLoad(moviesPage)
+        postPopularMovies(paginationHelper.allItems)
     }
 
     private fun postPopularMovies(allMovies: MutableList<Movie>) {

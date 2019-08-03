@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize data class MovieUiModel(
     val id: Int,
-    val imageUrl: String,
+    val imageUrl: String?,
     val voteAverage: Double,
     val title: String,
     val adult: Boolean,

@@ -26,7 +26,8 @@ import kotlinx.android.synthetic.main.item_hero.view.movie_year
 import kotlinx.android.synthetic.main.item_list.view.*
 import kotlinx.android.synthetic.main.item_progress.view.*
 
-class MoviesAdapter(private val context: Context, private val onMovieClick: ((MovieUiModel) -> Unit)) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesAdapter(private val context: Context, private val onMovieClick: ((MovieUiModel) -> Unit)) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var moviesItems: MutableList<MoviesListItem> = mutableListOf()
 
@@ -149,7 +150,7 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
             itemView.movie_title.text = movie.title
             itemView.movie_year.text = formatYearLabel(movie)
             itemView.movie_desc.text = movie.overview
-            loadImage(movie.imageUrl).into(itemView.movie_poster)
+            movie.imageUrl?.let { loadImage(it).into(itemView.movie_poster) }
         }
     }
 
@@ -169,31 +170,33 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
             itemView.movie_desc.text = movie.overview
 
             // load movie thumbnail
-            loadImage(movie.imageUrl)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any,
-                        target: Target<Drawable>,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        itemView.movie_progress.visibility = View.GONE
-                        return false
-                    }
+            movie.imageUrl?.let {
+                loadImage(it)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any,
+                            target: Target<Drawable>,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            itemView.movie_progress.visibility = View.GONE
+                            return false
+                        }
 
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        model: Any,
-                        target: Target<Drawable>,
-                        dataSource: DataSource,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        // image ready, hide progress now
-                        itemView.movie_progress.visibility = View.GONE
-                        return false   // return false if you want Glide to handle everything else.
-                    }
-                })
-                .into(itemView.movie_poster)
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            model: Any,
+                            target: Target<Drawable>,
+                            dataSource: DataSource,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            // image ready, hide progress now
+                            itemView.movie_progress.visibility = View.GONE
+                            return false   // return false if you want Glide to handle everything else.
+                        }
+                    })
+                    .into(itemView.movie_poster)
+            }
         }
     }
 

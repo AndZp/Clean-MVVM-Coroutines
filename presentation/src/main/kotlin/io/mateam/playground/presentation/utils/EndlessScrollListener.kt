@@ -57,7 +57,7 @@ abstract class EndlessRecyclerViewScrollListener protected constructor(layoutMan
         }
 
         // If the total item count is zero and the previous isn't, assume the
-        // list is invalidated and should be reset back to initial state
+        // list is invalidated and should be reset back to initial fullDetails
         if (totalItemCount < previousTotalItemCount) {
             this.currentPage = 0
             this.previousTotalItemCount = totalItemCount

@@ -31,8 +31,7 @@ class TmdbMoviesApiDataSource(
             val response: Response<TmdbPopularMoviesResponse> = api.getPopularMovie(page)
             val tmdbMovieResponse = response.body()
             if (response.isSuccessful && tmdbMovieResponse != null) {
-                val popularMovies = moviesMapper.mapPopular(tmdbMovieResponse)
-                Result.Success(popularMovies)
+                parsePopularMovieResponse(tmdbMovieResponse)
             } else {
                 Result.Error(IOException("Error Occurred during getting api.getPopularMovie(), ${response.errorBody()}"))
             }
@@ -47,8 +46,7 @@ class TmdbMoviesApiDataSource(
             val response: Response<TmdbMoviesDetailsResponse> = api.getMovie(id)
             val tmdbMovieResponse = response.body()
             if (response.isSuccessful && tmdbMovieResponse != null) {
-                val movieDetails = moviesMapper.mapFullDetails(tmdbMovieResponse)
-                Result.Success(movieDetails)
+                parseFullMovieDetailsResponse(tmdbMovieResponse)
             } else {
                 Result.Error(IOException("Error Occurred during getting api.getMovie(), ${response.errorBody()}"))
             }
@@ -63,8 +61,7 @@ class TmdbMoviesApiDataSource(
             val response: Response<TmdbReviewsResponse> = api.getReviews(id, page)
             val reviewsResponse = response.body()
             if (response.isSuccessful && reviewsResponse != null) {
-                val movieDetails = reviewMapper.mapReviews(reviewsResponse)
-                Result.Success(movieDetails)
+                parseReviewResponse(reviewsResponse)
             } else {
                 Result.Error(IOException("Error Occurred during getting api.getReview(), ${response.errorBody()}"))
             }
@@ -72,5 +69,23 @@ class TmdbMoviesApiDataSource(
             logWarning("getPopular: Error Occurred during getting api.getReview()", e)
             Result.Error((e))
         }
+    }
+
+    private fun parsePopularMovieResponse(tmdbMovieResponse: TmdbPopularMoviesResponse): Result<PopularMovies> {
+        return moviesMapper.mapPopular(tmdbMovieResponse)
+            ?.let { movies -> Result.Success(movies) }
+            ?: Result.Error(IOException("Error to parse popularMoviesResponse response [$tmdbMovieResponse]"))
+    }
+
+    private fun parseFullMovieDetailsResponse(tmdbMovieResponse: TmdbMoviesDetailsResponse): Result<MovieFullDetails> {
+        return (moviesMapper.mapFullDetails(tmdbMovieResponse)
+            ?.let { Result.Success(it) }
+            ?: Result.Error(IOException("Error to parse MovieFullDetails response [$tmdbMovieResponse]")))
+    }
+
+    private fun parseReviewResponse(reviewsResponse: TmdbReviewsResponse): Result<MovieReviews> {
+        return (reviewMapper.mapReviews(reviewsResponse)
+            ?.let { Result.Success(it) }
+            ?: Result.Error(IOException("Error to parse MovieFullDetails response [$reviewsResponse]")))
     }
 }

@@ -1,7 +1,6 @@
 package io.mateam.playground.presentation.popular.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import io.mateam.playground.presentation.utils.logDebug
 
 
 class MovieListItemsDiffCallback(
@@ -19,15 +18,10 @@ class MovieListItemsDiffCallback(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val areItemsTheSame = old[oldItemPosition] == updated[newItemPosition]
-        logDebug("areItemsTheSame: oldItemPosition [$oldItemPosition], newItemPosition[$newItemPosition], areItemsTheSame[$areItemsTheSame]")
-        return areItemsTheSame
+        return old[oldItemPosition] == updated[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val areContentsTheSame = old[oldItemPosition] == (updated[newItemPosition])
-        logDebug("areContentsTheSame: oldItemPosition [$oldItemPosition], newItemPosition[$newItemPosition], areContentsTheSame[$areContentsTheSame]")
-
-        return areContentsTheSame
+        return old[oldItemPosition] == (updated[newItemPosition])
     }
 }

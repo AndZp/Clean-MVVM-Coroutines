@@ -10,5 +10,7 @@ interface UserRepo {
 
     suspend fun getUser(id: String): Result<User>
 
-    suspend fun saveUser(user: User)
+    suspend fun insertUser(user: User)
+
+    suspend fun updateUser(user: User)
 }

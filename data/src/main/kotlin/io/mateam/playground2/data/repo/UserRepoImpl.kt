@@ -9,8 +9,6 @@ import io.mateam.playground2.domain.repo.UserRepo
 import java.io.IOException
 
 class UserRepoImpl(private val userPreferences: UserPreferences, private val local: LocalUserDataSource) : UserRepo {
-
-
     override suspend fun getLoggedInUserId(): Result<String> {
         val loggedInUserId = userPreferences.loggedInUserId
         logDebug("getLoggedInUserId: return [$loggedInUserId]")
@@ -30,8 +28,13 @@ class UserRepoImpl(private val userPreferences: UserPreferences, private val loc
         return result
     }
 
-    override suspend fun saveUser(user: User) {
-        logDebug("saveUser: user id [$user.id]")
-        local.saveUser(user)
+    override suspend fun insertUser(user: User) {
+        logDebug("insertUser: user id [$user.id]")
+        local.insertUser(user)
+    }
+
+    override suspend fun updateUser(user: User) {
+        logDebug("updateUser: user id [$user.id]")
+        local.updateUser(user)
     }
 }

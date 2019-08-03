@@ -33,11 +33,15 @@ class FavoriteMoviesImpl(
 ) : FavoriteMovies, List<Int> by favorites {
 
     override fun add(movieId: Int) {
-        favorites.add(movieId)
+        if (!favorites.contains(movieId)) {
+            favorites.add(movieId)
+        }
     }
 
     override fun remove(movieId: Int) {
-        favorites.add(movieId)
+        if (!favorites.contains(movieId)) {
+            favorites.remove(movieId)
+        }
     }
 
     override fun isFavorite(movieId: Int): Boolean {

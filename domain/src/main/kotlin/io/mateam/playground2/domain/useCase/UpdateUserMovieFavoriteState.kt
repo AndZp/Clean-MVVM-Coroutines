@@ -28,7 +28,7 @@ class UpdateUserMovieFavoriteState(private val userManager: UserManager) : BaseU
         } else {
             user.favoritesMovies.remove(param.movieId)
         }
-        userManager.saveUser(user)
+        userManager.updateUser(user)
         logDebug("onSuccess: for movie id = [${param.movieId}, state updated to inFavorite =[${param.inFavorite}]] ")
         return Either.Right(Unit)
     }

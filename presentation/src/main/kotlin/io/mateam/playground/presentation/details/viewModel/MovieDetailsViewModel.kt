@@ -55,9 +55,8 @@ class MovieDetailsViewModel(
 
     private fun handleDetailsSuccess(movieFullDetails: MovieFullDetails) {
         logDebug("handleDetailsSuccess, movie  id = [${movieFullDetails.id}, title [${movieFullDetails.title}")
-        postGenres(movieFullDetails.genres)
+        movieFullDetails.genres?.let { postGenres(it) }
     }
-
 
     private fun handleReviewFailure(failure: Failure) {
         logDebug("handleReviewFailure: [${failure.javaClass.simpleName}]")

@@ -9,16 +9,23 @@ import java.io.IOException
 
 interface LocalUserDataSource {
     suspend fun getUser(id: String): Result<User>
-    suspend fun saveUser(user: User)
+    suspend fun insertUser(user: User)
+    suspend fun updateUser(user: User)
     suspend fun removeUser(user: User)
 }
 
 class RoomDbUserDataSource(private val db: UserDao, private val mapper: DbUserMapper) : LocalUserDataSource {
 
-    override suspend fun saveUser(user: User) {
-        logDebug("saveUser: user [$user]")
+    override suspend fun insertUser(user: User) {
+        logDebug("insertUser: user [$user]")
         val userDbModel = mapper.mapToDb(user)
         db.insertUser(userDbModel)
+    }
+
+    override suspend fun updateUser(user: User) {
+        logDebug("update: user [$user]")
+        val userDbModel = mapper.mapToDb(user)
+        db.updateUser(userDbModel)
     }
 
     override suspend fun getUser(id: String): Result<User> {

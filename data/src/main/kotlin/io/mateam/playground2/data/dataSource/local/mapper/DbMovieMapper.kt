@@ -1,9 +1,9 @@
 package io.mateam.playground2.data.dataSource.local.mapper
 
 import io.mateam.playground2.data.dataSource.local.entity.DbGenre
-import io.mateam.playground2.data.dataSource.local.entity.MovieDbModel
 import io.mateam.playground2.data.dataSource.local.entity.DbProductionCompany
 import io.mateam.playground2.data.dataSource.local.entity.DbSpokenLanguage
+import io.mateam.playground2.data.dataSource.local.entity.MovieDbModel
 import io.mateam.playground2.data.dataSource.remote.mapper.MediaPathParser
 import io.mateam.playground2.domain.entity.movie.Genre
 import io.mateam.playground2.domain.entity.movie.MovieFullDetails
@@ -16,7 +16,7 @@ class DbMovieMapper {
             adult = movie.adult,
             backdrop_path = movie.backdrop_path,
             budget = movie.budget,
-            genres = movie.genres.map { mapToDbGenre(it) },
+            genres = movie.genres?.map { mapToDbGenre(it) },
             homepage = movie.homepage,
             id = movie.id,
             imdb_id = movie.imdb_id,
@@ -25,11 +25,11 @@ class DbMovieMapper {
             overview = movie.overview,
             popularity = movie.popularity,
             poster_path = MediaPathParser.getPosterPath(movie.poster_path),
-            production_companies = movie.production_companies.map { mapToDbProductionCompany(it) },
+            production_companies = movie.production_companies?.map { mapToDbProductionCompany(it) },
             release_date = movie.release_date,
             revenue = movie.revenue,
             runtime = movie.runtime,
-            spoken_languages = movie.spoken_languages.map { mapToDbSpokenLanguage(it) },
+            spoken_languages = movie.spoken_languages?.map { mapToDbSpokenLanguage(it) },
             status = movie.status,
             tagline = movie.tagline,
             title = movie.title,
@@ -67,7 +67,7 @@ class DbMovieMapper {
             adult = movie.adult,
             backdrop_path = movie.backdrop_path,
             budget = movie.budget,
-            genres = movie.genres.map { mapFromDbGenre(it) },
+            genres = movie.genres?.map { mapFromDbGenre(it) },
             homepage = movie.homepage,
             id = movie.id,
             imdb_id = movie.imdb_id,
@@ -76,11 +76,11 @@ class DbMovieMapper {
             overview = movie.overview,
             popularity = movie.popularity,
             poster_path = MediaPathParser.getPosterPath(movie.poster_path),
-            production_companies = movie.production_companies.map { mapFromDbProductionCompany(it) },
+            production_companies = movie.production_companies?.map { mapFromDbProductionCompany(it) },
             release_date = movie.release_date,
             revenue = movie.revenue,
             runtime = movie.runtime,
-            spoken_languages = movie.spoken_languages.map { mapFromDbSpokenLanguage(it) },
+            spoken_languages = movie.spoken_languages?.map { mapFromDbSpokenLanguage(it) },
             status = movie.status,
             tagline = movie.tagline,
             title = movie.title,

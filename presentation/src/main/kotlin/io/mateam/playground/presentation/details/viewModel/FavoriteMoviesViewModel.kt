@@ -33,7 +33,7 @@ class FavoriteMoviesViewModel(
             updateFavoriteState.invoke(viewModelScope, UpdateUserMovieFavoriteState.Param(movieId, true))
         }
         favoriteStateHelper.onChangeToRegular = {
-            updateFavoriteState.invoke(viewModelScope, UpdateUserMovieFavoriteState.Param(movieId, true))
+            updateFavoriteState.invoke(viewModelScope, UpdateUserMovieFavoriteState.Param(movieId, false))
             postFavoriteState(false)
         }
     }

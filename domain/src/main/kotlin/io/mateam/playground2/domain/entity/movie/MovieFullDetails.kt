@@ -2,28 +2,28 @@ package io.mateam.playground2.domain.entity.movie
 
 data class MovieFullDetails(
     val adult: Boolean,
-    val backdrop_path: String,
-    val budget: Int,
-    val genres: List<Genre>,
+    val backdrop_path: String?,
+    val budget: Int?,
+    val genres: List<Genre>?,
     val homepage: String?,
     val id: Int,
-    val imdb_id: String,
-    val original_language: String,
-    val original_title: String,
+    val imdb_id: String?,
+    val original_language: String?,
+    val original_title: String?,
     val overview: String,
     val popularity: Double,
     val poster_path: String,
-    val production_companies: List<ProductionCompany>,
-    val release_date: String,
-    val revenue: Int,
-    val runtime: Int,
-    val spoken_languages: List<SpokenLanguage>,
-    val status: String,
-    val tagline: String,
+    val production_companies: List<ProductionCompany>?,
+    val release_date: String?,
+    val revenue: Int?,
+    val runtime: Int?,
+    val spoken_languages: List<SpokenLanguage>?,
+    val status: String?,
+    val tagline: String?,
     val title: String,
-    val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    val video: Boolean?,
+    val vote_average: Double?,
+    val vote_count: Int?
 )
 
 data class SpokenLanguage(
@@ -33,9 +33,9 @@ data class SpokenLanguage(
 
 data class ProductionCompany(
     val id: Int,
-    val logo_path: String,
+    val logo_path: String?,
     val name: String,
-    val origin_country: String
+    val origin_country: String?
 )
 
 data class Genre(

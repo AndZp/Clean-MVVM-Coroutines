@@ -4,10 +4,10 @@ import io.mateam.playground2.data.dataSource.cache.CacheDataSource
 import io.mateam.playground2.data.dataSource.local.LocalMoviesDataSource
 import io.mateam.playground2.data.dataSource.remote.RemoteMoviesDataSource
 import io.mateam.playground2.data.utils.logDebug
-import io.mateam.playground2.domain.entity.MovieFullDetails
-import io.mateam.playground2.domain.entity.MovieReviews
-import io.mateam.playground2.domain.entity.PopularMovies
-import io.mateam.playground2.domain.entity.Result
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.movie.MovieReviews
+import io.mateam.playground2.domain.entity.movie.PopularMovies
+import io.mateam.playground2.domain.entity.result.Result
 import io.mateam.playground2.domain.repo.MoviesRepo
 
 class TmdbMoviesRepo(

@@ -5,10 +5,10 @@ import io.mateam.playground2.data.dataSource.local.entity.MovieDbModel
 import io.mateam.playground2.data.dataSource.local.entity.DbProductionCompany
 import io.mateam.playground2.data.dataSource.local.entity.DbSpokenLanguage
 import io.mateam.playground2.data.dataSource.remote.mapper.MediaPathParser
-import io.mateam.playground2.domain.entity.Genre
-import io.mateam.playground2.domain.entity.MovieFullDetails
-import io.mateam.playground2.domain.entity.ProductionCompany
-import io.mateam.playground2.domain.entity.SpokenLanguage
+import io.mateam.playground2.domain.entity.movie.Genre
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.movie.ProductionCompany
+import io.mateam.playground2.domain.entity.movie.SpokenLanguage
 
 class DbMovieMapper {
     fun mapToDb(movie: MovieFullDetails): MovieDbModel {

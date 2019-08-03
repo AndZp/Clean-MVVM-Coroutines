@@ -7,10 +7,10 @@ import io.mateam.playground2.data.dataSource.remote.entity.TmdbReviewsResponse
 import io.mateam.playground2.data.dataSource.remote.mapper.RemoteMoviesMapper
 import io.mateam.playground2.data.dataSource.remote.mapper.RemoteReviewsMapper
 import io.mateam.playground2.data.utils.logWarning
-import io.mateam.playground2.domain.entity.MovieFullDetails
-import io.mateam.playground2.domain.entity.MovieReviews
-import io.mateam.playground2.domain.entity.PopularMovies
-import io.mateam.playground2.domain.entity.Result
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.movie.MovieReviews
+import io.mateam.playground2.domain.entity.movie.PopularMovies
+import io.mateam.playground2.domain.entity.result.Result
 import retrofit2.Response
 import java.io.IOException
 

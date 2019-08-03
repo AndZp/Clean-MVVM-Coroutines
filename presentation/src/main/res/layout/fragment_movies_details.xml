@@ -63,4 +63,13 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_like"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_unlike"
+            android:layout_width="wrap_content"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

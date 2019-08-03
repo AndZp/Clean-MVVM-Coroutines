@@ -6,7 +6,11 @@ import androidx.lifecycle.viewModelScope
 import io.mateam.playground.presentation.details.entity.ReviewUiModel
 import io.mateam.playground.presentation.details.mapper.MoviesDetailsUiMapper
 import io.mateam.playground.presentation.popular.paginator.PaginationHelper
-import io.mateam.playground2.domain.entity.*
+import io.mateam.playground2.domain.entity.movie.Genre
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.movie.MovieReviews
+import io.mateam.playground2.domain.entity.movie.Review
+import io.mateam.playground2.domain.entity.result.Failure
 import io.mateam.playground2.domain.useCase.GetMovieReview
 import io.mateam.playground2.domain.useCase.GetMoviesFullDetails
 import io.mateam.playground2.domain.utils.logDebug

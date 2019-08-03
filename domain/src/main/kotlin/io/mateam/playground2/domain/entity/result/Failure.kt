@@ -1,4 +1,4 @@
-package io.mateam.playground2.domain.entity
+package io.mateam.playground2.domain.entity.result
 
 /**
  * Base Class for handling errors/failures/exceptions.

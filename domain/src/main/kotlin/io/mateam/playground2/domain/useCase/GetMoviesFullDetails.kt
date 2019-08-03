@@ -1,8 +1,8 @@
 package io.mateam.playground2.domain.useCase
 
-import io.mateam.playground2.domain.entity.Failure
-import io.mateam.playground2.domain.entity.MovieFullDetails
-import io.mateam.playground2.domain.entity.Result
+import io.mateam.playground2.domain.entity.result.Failure
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.result.Result
 import io.mateam.playground2.domain.repo.MoviesRepo
 import io.mateam.playground2.domain.utils.Either
 import io.mateam.playground2.domain.utils.logDebug

@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import io.mateam.playground.presentation.R
 import io.mateam.playground.presentation.details.adapter.ReviewsAdapter
 import io.mateam.playground.presentation.details.entity.ReviewUiModel
+import io.mateam.playground.presentation.details.viewModel.FavoriteState
 import io.mateam.playground.presentation.details.viewModel.MovieDetailsViewModel
 import io.mateam.playground.presentation.details.viewModel.MoviesReviewState
+import io.mateam.playground.presentation.details.viewModel.FavoriteMoviesViewModel
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.utils.EndlessRecyclerViewScrollListener
 import io.mateam.playground.presentation.utils.GlideApp
@@ -31,7 +33,7 @@ class MoviesDetailsFragment : Fragment() {
     private val movie: MovieUiModel by NotNullParcelableArg(MOVIE_MODEL_ARG_KEY)
 
     private val moviesDetailsViewModel: MovieDetailsViewModel by viewModel { parametersOf(movie.id) }
-
+    private val favoriteMoviesViewModel: FavoriteMoviesViewModel by viewModel { parametersOf(movie.id) }
 
     private lateinit var reviewsAdapter: ReviewsAdapter
     private lateinit var paginationListener: EndlessRecyclerViewScrollListener
@@ -40,7 +42,6 @@ class MoviesDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movies_details, container, false)
     }
 
@@ -48,6 +49,7 @@ class MoviesDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindMovieModel()
         initReviewsRV()
+        initFavoriteFAB()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,9 +74,14 @@ class MoviesDetailsFragment : Fragment() {
         }
     }
 
+    private fun initFavoriteFAB() {
+        fab_like.setOnClickListener {
+            favoriteMoviesViewModel.notifyFavoriteClicked()
+        }
+    }
+
     private fun initReviewsRV() {
         reviewsAdapter = ReviewsAdapter(requireContext())
-
         val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         paginationListener = buildPaginationScrollListener(linearLayoutManager)
         with(detail_body_recyclerView_reviews) {
@@ -95,8 +102,14 @@ class MoviesDetailsFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        moviesDetailsViewModel.reviewState.observe(this, Observer { onReviewStateChanged(it) })
-        moviesDetailsViewModel.genersTags.observe(this, Observer { bindGenres(it) })
+        with(moviesDetailsViewModel) {
+            reviewState.observe(this@MoviesDetailsFragment, Observer { onReviewStateChanged(it) })
+            genersTags.observe(this@MoviesDetailsFragment, Observer { bindGenres(it) })
+        }
+
+        with(favoriteMoviesViewModel) {
+            favoriteState.observe(this@MoviesDetailsFragment, Observer { favoriteStateChanged(it) })
+        }
     }
 
     private fun onReviewStateChanged(state: MoviesReviewState?) {
@@ -105,6 +118,24 @@ class MoviesDetailsFragment : Fragment() {
             is MoviesReviewState.Loading -> showReviewLoading()
             is MoviesReviewState.LoadingError -> showReviewLoadingError()
             is MoviesReviewState.Success -> updateReviewList(state.reviews)
+        }
+    }
+
+    private fun favoriteStateChanged(state: FavoriteState?) {
+        logDebug("favoriteStateChanged: state [${state?.javaClass?.simpleName}]")
+        when (state) {
+            is FavoriteState.Favorite -> {
+                fab_like.setImageResource(R.drawable.ic_like)
+                fab_like.isEnabled = true
+            }
+            is FavoriteState.Regular -> {
+                fab_like.setImageResource(R.drawable.ic_unlike)
+                fab_like.isEnabled = true
+            }
+            is FavoriteState.Unknown -> {
+                fab_like.setImageResource(R.drawable.ic_unlike)
+                fab_like.isEnabled = false
+            }
         }
     }
 

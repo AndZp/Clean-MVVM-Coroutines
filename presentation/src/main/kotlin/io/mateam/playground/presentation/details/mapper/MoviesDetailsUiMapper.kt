@@ -2,8 +2,8 @@ package io.mateam.playground.presentation.details.mapper
 
 import io.mateam.playground.presentation.details.entity.ReviewUiModel
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
-import io.mateam.playground2.domain.entity.Movie
-import io.mateam.playground2.domain.entity.Review
+import io.mateam.playground2.domain.entity.movie.Movie
+import io.mateam.playground2.domain.entity.movie.Review
 
 class MoviesDetailsUiMapper {
     fun map(movies: List<Movie>): List<MovieUiModel> {

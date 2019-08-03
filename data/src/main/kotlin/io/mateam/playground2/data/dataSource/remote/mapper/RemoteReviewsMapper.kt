@@ -2,8 +2,8 @@ package io.mateam.playground2.data.dataSource.remote.mapper
 
 import io.mateam.playground2.data.dataSource.remote.entity.Result
 import io.mateam.playground2.data.dataSource.remote.entity.TmdbReviewsResponse
-import io.mateam.playground2.domain.entity.MovieReviews
-import io.mateam.playground2.domain.entity.Review
+import io.mateam.playground2.domain.entity.movie.MovieReviews
+import io.mateam.playground2.domain.entity.movie.Review
 
 class RemoteReviewsMapper {
 

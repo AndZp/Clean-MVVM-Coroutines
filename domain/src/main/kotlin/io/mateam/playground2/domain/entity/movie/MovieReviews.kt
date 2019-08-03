@@ -1,4 +1,4 @@
-package io.mateam.playground2.domain.entity
+package io.mateam.playground2.domain.entity.movie
 
 data class MovieReviews(
     val id: Int,

@@ -94,6 +94,4 @@ dependencies {
     androidTestImplementation appTestDependencies.espressoContrib
     implementation appTestDependencies.espressoIdlingResource
     androidTestImplementation appTestDependencies.supportAnnotations
-
-
 }

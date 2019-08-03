@@ -1,6 +1,6 @@
 package io.mateam.playground2.domain.useCase
 
-import io.mateam.playground2.domain.entity.Failure
+import io.mateam.playground2.domain.entity.result.Failure
 import io.mateam.playground2.domain.utils.Either
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async

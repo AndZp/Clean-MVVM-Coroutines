@@ -2,7 +2,7 @@ package io.mateam.playground2.data.dataSource.remote.mapper
 
 import io.mateam.playground2.data.dataSource.remote.entity.TmdbMoviesDetailsResponse
 import io.mateam.playground2.data.dataSource.remote.entity.TmdbPopularMoviesResponse
-import io.mateam.playground2.domain.entity.*
+import io.mateam.playground2.domain.entity.movie.*
 
 class RemoteMoviesMapper {
     fun mapPopular(response: TmdbPopularMoviesResponse): PopularMovies {

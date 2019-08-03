@@ -1,7 +1,7 @@
 package io.mateam.playground2.data.dataSource.cache
 
 import io.mateam.playground2.data.utils.logDebug
-import io.mateam.playground2.domain.entity.PopularMovies
+import io.mateam.playground2.domain.entity.movie.PopularMovies
 
 interface CacheDataSource {
     fun getPopularMovies(page: Int): PopularMovies?

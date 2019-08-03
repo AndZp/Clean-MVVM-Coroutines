@@ -6,9 +6,9 @@ import androidx.lifecycle.viewModelScope
 import io.mateam.playground.presentation.popular.entity.MovieUiModel
 import io.mateam.playground.presentation.popular.mapper.PopularMoviesUiMapper
 import io.mateam.playground.presentation.popular.paginator.PaginationHelper
-import io.mateam.playground2.domain.entity.Failure
-import io.mateam.playground2.domain.entity.Movie
-import io.mateam.playground2.domain.entity.PopularMovies
+import io.mateam.playground2.domain.entity.result.Failure
+import io.mateam.playground2.domain.entity.movie.Movie
+import io.mateam.playground2.domain.entity.movie.PopularMovies
 import io.mateam.playground2.domain.useCase.GetPopularMoviesPage
 import io.mateam.playground2.domain.utils.logDebug
 import io.mateam.playground2.domain.utils.logWarning

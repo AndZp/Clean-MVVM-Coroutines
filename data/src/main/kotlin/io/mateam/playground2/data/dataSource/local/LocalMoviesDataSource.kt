@@ -3,8 +3,8 @@ package io.mateam.playground2.data.dataSource.local
 import io.mateam.playground2.data.dataSource.local.dao.MoviesDao
 import io.mateam.playground2.data.dataSource.local.mapper.DbMovieMapper
 import io.mateam.playground2.data.utils.logDebug
-import io.mateam.playground2.domain.entity.MovieFullDetails
-import io.mateam.playground2.domain.entity.Result
+import io.mateam.playground2.domain.entity.movie.MovieFullDetails
+import io.mateam.playground2.domain.entity.result.Result
 import java.io.IOException
 
 interface LocalMoviesDataSource {

@@ -1,4 +1,6 @@
 # TMDB Movies - Clean-MVVM-Coroutines 
+[![](http://img.youtube.com/vi/-m1qiKpquNA/0.jpg)](http://www.youtube.com/watch?v=-m1qiKpquNA "Movie app demo")
+
 
 #### This repository contains a detailed sample app that : 
 - written in Kotlin (100%),  
@@ -31,7 +33,13 @@
    - ViewModel: https://developer.android.com/topic/libraries/architecture/viewmodel
    - Navigation: https://developer.android.com/topic/libraries/architecture/navigation/
    - DataBinding: https://developer.android.com/topic/libraries/data-binding/
-       
+   
+### TODO: 
+- cover with Unit Tests
+- xml refactoring using constrain layout
+- UI/UX impromvent 
+- crashlitcs and analytics support
+   
 ### License
 ```
  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 

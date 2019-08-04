@@ -24,6 +24,7 @@
 
         <ImageView
             android:id="@+id/movie_poster"
+            android:transitionName="imageView"
             android:layout_width="@dimen/poster_thumb_width"
             android:layout_height="@dimen/poster_thumb_height"/>
 

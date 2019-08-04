@@ -26,7 +26,7 @@ data class MovieDbModel(
     @TypeConverters(ProductionCompanyListConverter::class)
     val production_companies: List<DbProductionCompany>?,
     val release_date: String?,
-    val revenue: Int?,
+    val revenue: Long?,
     val runtime: Int?,
     @TypeConverters(SpokenLanguageListConverter::class)
     val spoken_languages: List<DbSpokenLanguage>?,

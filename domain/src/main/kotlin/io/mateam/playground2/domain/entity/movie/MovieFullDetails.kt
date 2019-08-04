@@ -15,7 +15,7 @@ data class MovieFullDetails(
     val poster_path: String,
     val production_companies: List<ProductionCompany>?,
     val release_date: String?,
-    val revenue: Int?,
+    val revenue: Long?,
     val runtime: Int?,
     val spoken_languages: List<SpokenLanguage>?,
     val status: String?,

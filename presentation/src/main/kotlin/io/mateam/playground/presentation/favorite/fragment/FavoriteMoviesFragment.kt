@@ -1,7 +1,9 @@
 package io.mateam.playground.presentation.favorite.fragment
 
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import io.mateam.playground.presentation.R
 import io.mateam.playground.presentation.common.entity.UiMoviesState
 import io.mateam.playground.presentation.common.fragment.MoviesFragment
@@ -35,11 +37,14 @@ class FavoriteMoviesFragment : MoviesFragment() {
         // Currently - do nothing. Pagination for UserFavorites - TBD
     }
 
-    override fun onMovieClicked(movie: MovieUiModel) {
+    override fun onMovieClicked(movie: MovieUiModel, sharedImageView: ImageView) {
         logDebug("onMovieClicked: movie id [${movie.id}], title [${movie.title}]")
+        val extras = FragmentNavigatorExtras(sharedImageView to "imageView")
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(
             R.id.action_navigation_favorite_to_moviesDetailsFragment,
-            MoviesDetailsFragment.buildBundle(movie)
+            MoviesDetailsFragment.buildBundle(movie),
+            null,
+            extras
         )
     }
 }

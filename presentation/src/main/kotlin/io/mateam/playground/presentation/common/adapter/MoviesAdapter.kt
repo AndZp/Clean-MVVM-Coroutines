@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestBuilder
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.item_hero.view.movie_year
 import kotlinx.android.synthetic.main.item_list.view.*
 import kotlinx.android.synthetic.main.item_progress.view.*
 
-class MoviesAdapter(private val context: Context, private val onMovieClick: ((MovieUiModel) -> Unit)) :
+class MoviesAdapter(private val context: Context, private val onMovieClick: ((MovieUiModel, ImageView) -> Unit)) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var moviesItems: MutableList<MoviesListItem> = mutableListOf()
@@ -153,9 +154,9 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
     private inner class TopMovie(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(
             movie: MovieUiModel,
-            onMovieClick: (MovieUiModel) -> Unit
+            onMovieClick: (MovieUiModel, ImageView) -> Unit
         ) {
-            itemView.setOnClickListener { onMovieClick.invoke(movie) }
+            itemView.setOnClickListener { onMovieClick.invoke(movie, itemView.movie_poster) }
 
             itemView.movie_title.text = movie.title
             itemView.movie_year.text = formatYearLabel(movie)
@@ -164,16 +165,13 @@ class MoviesAdapter(private val context: Context, private val onMovieClick: ((Mo
         }
     }
 
-    /**
-     * Main list's content ViewHolder
-     */
     private inner class MovieVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(
             movie: MovieUiModel,
-            onMovieClick: (MovieUiModel) -> Unit
+            onMovieClick: (MovieUiModel, ImageView) -> Unit
         ) {
 
-            itemView.setOnClickListener { onMovieClick.invoke(movie) }
+            itemView.setOnClickListener { onMovieClick.invoke(movie, itemView.movie_poster) }
 
             itemView.movie_title.text = movie.title
             itemView.movie_year.text = formatYearLabel(movie)

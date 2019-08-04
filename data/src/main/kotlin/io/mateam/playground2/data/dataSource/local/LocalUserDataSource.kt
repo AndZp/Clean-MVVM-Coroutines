@@ -43,5 +43,6 @@ class RoomDbUserDataSource(private val db: UserDao, private val mapper: DbUserMa
 
     override suspend fun removeUser(user: User) {
         logDebug("removeUser: userId [${user.id}]")
+        // TBD
     }
 }

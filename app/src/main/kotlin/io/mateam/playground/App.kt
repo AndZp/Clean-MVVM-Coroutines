@@ -4,8 +4,8 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import io.mateam.playground.di.data.localDataSourceModule
 import io.mateam.playground.di.data.preferencesModule
-import io.mateam.playground.di.data.reposModule
 import io.mateam.playground.di.data.remoteDataSourceModule
+import io.mateam.playground.di.data.reposModule
 import io.mateam.playground.di.domain.managersModule
 import io.mateam.playground.di.domain.useCasesModule
 import io.mateam.playground.di.presentation.popularMovies.viewModelsModule

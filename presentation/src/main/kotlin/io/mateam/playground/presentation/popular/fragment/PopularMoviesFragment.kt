@@ -1,8 +1,11 @@
 package io.mateam.playground.presentation.popular.fragment
 
 
+import android.widget.ImageView
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import io.mateam.playground.presentation.R
 import io.mateam.playground.presentation.common.entity.UiMoviesState
 import io.mateam.playground.presentation.common.fragment.MoviesFragment
@@ -36,11 +39,15 @@ class PopularMoviesFragment : MoviesFragment() {
         popularMoviesViewModel.loadNextPage()
     }
 
-    override fun onMovieClicked(movie: MovieUiModel) {
+    override fun onMovieClicked(movie: MovieUiModel, sharedImageView: ImageView) {
         logDebug("onMovieClicked: movie id [${movie.id}], title [${movie.title}]")
+        val transitionName = ViewCompat.getTransitionName(sharedImageView)?:""
+        val extras =  FragmentNavigatorExtras(sharedImageView to transitionName)
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(
             R.id.action_popularMoviesFragment_to_moviesDetailsFragment,
-            MoviesDetailsFragment.buildBundle(movie)
+            MoviesDetailsFragment.buildBundle(movie),
+            null,
+            extras
         )
     }
 }

@@ -59,13 +59,14 @@ dependencies {
     implementation presentationDependencies.appCompat
     implementation presentationDependencies.constraintLayout
 
+    implementation presentationDependencies.lottie
+
     // Navigation libs
     implementation presentationDependencies.navUi
     implementation presentationDependencies.navFragment
 
     //Glide
     implementation presentationDependencies.glide
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt presentationDependencies.glideProccessor
 
     //di
@@ -78,12 +79,11 @@ dependencies {
     implementation presentationDependencies.lifecycleViewMovel
 
     // Timber log
-    implementation dataDependencies.timber
+    implementation presentationDependencies.timber
 
-    implementation 'co.lujun:androidtagview:1.1.7'
-    implementation 'com.ms-square:expandableTextView:0.1.4'
-    implementation 'com.tinder.statemachine:statemachine:0.2.0'
-
+    implementation presentationDependencies.tagview
+    implementation presentationDependencies.expandableTextView
+    implementation presentationDependencies.statemachine
 
     // test
     testImplementation presentationTestDependencies.junit

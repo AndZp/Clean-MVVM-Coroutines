@@ -35,6 +35,10 @@ ext {
     mockitoCoreVersion = '2.21.0'
 
     stethoVersion = '1.5.1'
+    lottieVersion = '3.0.7'
+    tagViewVersion = '1.1.7'
+    expandableTextViewVersion = '0.1.4'
+    statemachineVersion = '0.2.0'
 
     // App
     appDependencies = [
@@ -62,6 +66,10 @@ ext {
             lifecycleCommon       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
             stetho                : "com.facebook.stetho:stetho:$stethoVersion",
             stethoOkHttp          : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
+            lottie                : "com.airbnb.android:lottie:$lottieVersion",
+            navFragment           : "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            navUi                 : "androidx.navigation:navigation-ui-ktx:$navVersion",
+
     ]
     appTestDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -147,6 +155,11 @@ ext {
             lifecycleViewMovel    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
             glide                 : "com.github.bumptech.glide:glide:$glideVersion",
             glideProccessor       : "com.github.bumptech.glide:compiler:$glideVersion",
+            lottie                : "com.airbnb.android:lottie:$lottieVersion",
+            tagview               : "co.lujun:androidtagview:$tagViewVersion",
+            expandableTextView    : "com.ms-square:expandableTextView:$expandableTextViewVersion",
+            statemachine          : "com.tinder.statemachine:statemachine:$statemachineVersion"
+
     ]
     presentationTestDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",

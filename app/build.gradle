@@ -48,6 +48,13 @@ dependencies {
     implementation appDependencies.appCompat
     implementation appDependencies.constraintLayout
 
+    //Lottie
+    implementation appDependencies.lottie
+
+    // Navigation libs
+    implementation presentationDependencies.navUi
+    implementation presentationDependencies.navFragment
+    
     // Kotlin
     implementation appDependencies.kotlin
 

@@ -33,7 +33,13 @@
    - ViewModel: https://developer.android.com/topic/libraries/architecture/viewmodel
    - Navigation: https://developer.android.com/topic/libraries/architecture/navigation/
    - DataBinding: https://developer.android.com/topic/libraries/data-binding/
-   
+  
+### How to run: 
+- import as a Android Gradle project
+- add next line to local.properties file: 
+  ``tmdb_api_key = "{TMDB_API_KEY}"``
+
+  
 ### TODO: 
 - cover with Unit Tests
 - xml refactoring using constrain layout

@@ -88,6 +88,7 @@ dependencies {
     // test
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.koinTest
+    testImplementation presentationTestDependencies.coroutinesTest
     androidTestImplementation presentationTestDependencies.testRunner
     androidTestImplementation presentationTestDependencies.testRules
     androidTestImplementation presentationTestDependencies.espressoCore

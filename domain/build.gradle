@@ -52,6 +52,9 @@ dependencies {
 
     // test
     testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.mockito
+    testImplementation domainTestDependencies.mockitoKotlin
+    testImplementation domainTestDependencies.coroutinesTest
+    testImplementation domainTestDependencies.assertK
+
     androidTestImplementation domainTestDependencies.testRunner
 }

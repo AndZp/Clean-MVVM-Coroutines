@@ -11,6 +11,5 @@
             android:id="@+id/rvMovies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            tools:listitem="@layout/item_poster"/>
+            android:clipToPadding="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
